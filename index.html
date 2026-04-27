@@ -1,12 +1,1196 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-    <title>tolong apakan kelompok ini</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stop Kekerasan – Edukasi Kekerasan di Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red:   #C8102E;
+      --red2:  #9B0E23;
+      --dark:  #0E0E0E;
+      --mid:   #1A1A1A;
+      --off:   #F7F4F0;
+      --warm:  #F0EBE3;
+      --text:  #2A2A2A;
+      --muted: #6E6E6E;
+      --white: #FFFFFF;
+      --accent:#E8D5B7;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem,5vw,4rem);
+      height: 64px;
+      background: rgba(14,14,14,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,16,46,0.2);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 900;
+      color: var(--white); letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.82rem; font-weight: 500;
+      color: rgba(255,255,255,0.65); letter-spacing: 0.06em;
+      text-transform: uppercase; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red); color: var(--white) !important;
+      padding: .4rem 1rem; border-radius: 4px;
+    }
+    .nav-cta:hover { background: var(--red2) !important; }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: .3s; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px clamp(1.5rem,8vw,8rem) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(200,16,46,0.12) 0%, transparent 65%);
+    }
+    .hero-bg-text {
+      position: absolute;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(10rem, 22vw, 22rem);
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-left { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red);
+      border: 1px solid rgba(200,16,46,0.4);
+      padding: .35rem .85rem; border-radius: 2px;
+      margin-bottom: 1.8rem;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      animation: fadeUp .6s .1s ease both;
+    }
+    .hero-title em { color: var(--red); font-style: normal; }
+    .hero-desc {
+      font-size: 1.05rem; color: rgba(255,255,255,0.6);
+      line-height: 1.75; max-width: 48ch;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .6s .2s ease both;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      animation: fadeUp .6s .3s ease both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--red); color: var(--white);
+      padding: .85rem 1.9rem; border-radius: 4px;
+      font-weight: 700; font-size: .9rem; text-decoration: none;
+      letter-spacing: 0.03em; transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--red2); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: .85rem 1.9rem; border-radius: 4px;
+      font-weight: 500; font-size: .9rem; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--red); background: rgba(200,16,46,0.08); }
+
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeUp .6s .4s ease both;
+    }
+    .stat-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      max-width: 420px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      transition: border-color .2s, background .2s;
+    }
+    .stat-card:hover { border-color: rgba(200,16,46,0.4); background: rgba(200,16,46,0.06); }
+    .stat-card.featured {
+      grid-column: span 2;
+      background: rgba(200,16,46,0.12);
+      border-color: rgba(200,16,46,0.3);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem; font-weight: 900;
+      color: var(--red); line-height: 1;
+      margin-bottom: .35rem;
+    }
+    .stat-label {
+      font-size: .78rem; color: rgba(255,255,255,0.55);
+      font-weight: 500; line-height: 1.4;
+    }
+    .stat-year {
+      display: inline-block; font-size: .65rem; font-weight: 700;
+      color: var(--red); letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: .5rem;
+    }
+
+    /* ── TICKER ───────────────────────────────────────────── */
+    .ticker {
+      background: var(--red); overflow: hidden;
+      padding: .7rem 0;
+    }
+    .ticker-inner {
+      display: flex; gap: 4rem;
+      animation: ticker 28s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item {
+      font-size: .78rem; font-weight: 700;
+      color: var(--white); letter-spacing: .12em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .ticker-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+
+    /* ── SECTION BASE ─────────────────────────────────────── */
+    section { padding: 100px clamp(1.5rem,8vw,8rem); }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .section-tag::before {
+      content: ''; display: block;
+      width: 24px; height: 2px; background: var(--red);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900; line-height: 1.15;
+      color: var(--dark); margin-bottom: 1rem;
+    }
+    .section-lead {
+      font-size: 1.05rem; color: var(--muted);
+      line-height: 1.75; max-width: 58ch;
+    }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ── WHAT IS VIOLENCE ─────────────────────────────────── */
+    #apa {
+      background: var(--white);
+    }
+    .apa-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem;
+      align-items: center;
+    }
+    .quote-block {
+      background: var(--dark); color: var(--white);
+      border-radius: 16px; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .quote-block::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 12rem; line-height: .8;
+      color: rgba(200,16,46,0.15);
+      position: absolute; top: -1rem; left: 1rem;
+      pointer-events: none;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      line-height: 1.6; position: relative; z-index: 1;
+      margin-bottom: 1rem;
+    }
+    .quote-text em { color: var(--red); font-style: normal; }
+    .quote-sub {
+      font-size: .85rem; color: rgba(255,255,255,0.5);
+      line-height: 1.6; position: relative; z-index: 1;
+    }
+    .definition-points { list-style: none; margin-top: 2rem; }
+    .definition-points li {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+      font-size: .95rem; line-height: 1.6;
+    }
+    .definition-points li:last-child { border-bottom: none; }
+    .def-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border-radius: 8px; display: grid; place-items: center;
+      font-size: 1rem;
+    }
+    .def-icon.red { background: rgba(200,16,46,0.1); }
+
+    /* ── TYPES ────────────────────────────────────────────── */
+    #bentuk { background: var(--warm); }
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .type-card {
+      background: var(--white); border-radius: 14px;
+      padding: 2rem; position: relative; overflow: hidden;
+      border: 1px solid transparent;
+      transition: border-color .25s, transform .2s, box-shadow .25s;
+    }
+    .type-card:hover {
+      border-color: var(--red);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(200,16,46,0.1);
+    }
+    .type-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--red);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform .25s;
+    }
+    .type-card:hover::after { transform: scaleY(1); }
+    .type-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: rgba(200,16,46,0.08); line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .type-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .type-title {
+      font-size: 1.05rem; font-weight: 700;
+      margin-bottom: .6rem; color: var(--dark);
+    }
+    .type-desc { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── DATA / STATISTICS ────────────────────────────────── */
+    #data {
+      background: var(--dark); color: var(--white);
+    }
+    #data .section-title { color: var(--white); }
+    #data .section-lead { color: rgba(255,255,255,0.55); }
+    .data-layout {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem;
+      align-items: start;
+    }
+    .chart-area {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 2.5rem;
+    }
+    .chart-title {
+      font-size: .8rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 2rem;
+    }
+    .bar-chart { display: flex; flex-direction: column; gap: 1.2rem; }
+    .bar-row { display: grid; grid-template-columns: 90px 1fr 70px; gap: .75rem; align-items: center; }
+    .bar-year { font-size: .82rem; color: rgba(255,255,255,0.5); font-weight: 500; }
+    .bar-track { background: rgba(255,255,255,0.07); border-radius: 99px; height: 10px; overflow: hidden; }
+    .bar-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(90deg, var(--red2), var(--red));
+      transform-origin: left;
+      animation: barGrow 1s ease both;
+    }
+    .bar-val { font-size: .8rem; color: rgba(255,255,255,0.7); font-weight: 600; text-align: right; }
+
+    .stat-highlights { display: flex; flex-direction: column; gap: 1.5rem; }
+    .sh-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid var(--red);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem;
+    }
+    .sh-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 900;
+      color: var(--red); line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .sh-label { font-size: .85rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+    .sh-source { font-size: .72rem; color: rgba(255,255,255,0.3); margin-top: .5rem; }
+    .data-note {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: rgba(200,16,46,0.1);
+      border: 1px solid rgba(200,16,46,0.2);
+      border-radius: 10px;
+      font-size: .85rem; color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .data-note strong { color: var(--red); }
+
+    /* ── CAUSES ───────────────────────────────────────────── */
+    #penyebab { background: var(--off); }
+    .causes-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 3.5rem;
+    }
+    .cause-card {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      background: var(--white); border-radius: 12px;
+      padding: 1.6rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow .2s;
+    }
+    .cause-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .cause-icon-wrap {
+      width: 48px; height: 48px; flex-shrink: 0;
+      border-radius: 12px;
+      background: rgba(200,16,46,0.08);
+      display: grid; place-items: center;
+      font-size: 1.3rem;
+    }
+    .cause-content h3 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+    .cause-content p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+    .causes-bottom {
+      margin-top: 2rem; padding: 1.5rem 2rem;
+      background: var(--dark); border-radius: 12px; color: var(--white);
+      font-size: .9rem; line-height: 1.7;
+      border-left: 4px solid var(--red);
+    }
+
+    /* ── IMPACT ───────────────────────────────────────────── */
+    #dampak { background: var(--white); }
+    .impact-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+    .impact-group {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .impact-header {
+      background: var(--dark); color: var(--white);
+      padding: 1.2rem 1.5rem;
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .impact-header.red { background: var(--red); }
+    .impact-body { padding: 1.5rem; }
+    .impact-body ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .impact-body li {
+      display: flex; gap: .7rem; align-items: flex-start;
+      font-size: .88rem; color: var(--text); line-height: 1.55;
+    }
+    .impact-body li::before {
+      content: '—'; color: var(--red); font-weight: 700; flex-shrink: 0;
+    }
+
+    /* ── BULLYING FOCUS ───────────────────────────────────── */
+    #bullying {
+      background: linear-gradient(135deg, #0E0E0E 0%, #1A0508 100%);
+      color: var(--white);
+    }
+    #bullying .section-title { color: var(--white); }
+    #bullying .section-lead { color: rgba(255,255,255,.5); }
+    .bully-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      margin-top: 3.5rem; align-items: start;
+    }
+    .bully-timeline { display: flex; flex-direction: column; gap: 0; }
+    .bully-year {
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 1.2rem; align-items: stretch;
+    }
+    .bully-year-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--red); text-align: right;
+      padding-top: .2rem;
+    }
+    .bully-year-body {
+      border-left: 2px solid rgba(255,255,255,0.1);
+      padding: 0 0 2rem 1.5rem;
+      position: relative;
+    }
+    .bully-year-body::before {
+      content: ''; position: absolute;
+      left: -5px; top: .55rem;
+      width: 8px; height: 8px;
+      background: var(--red); border-radius: 50%;
+    }
+    .bully-year-body h3 {
+      font-size: 1.6rem; font-weight: 700; margin-bottom: .3rem; line-height: 1;
+    }
+    .bully-year-body p { font-size: .83rem; color: rgba(255,255,255,.5); }
+    .bully-facts {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .bully-fact {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px; padding: 1.3rem 1.5rem;
+    }
+    .bully-fact h4 { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: .5rem; }
+    .bully-fact p { font-size: .88rem; color: rgba(255,255,255,.6); line-height: 1.6; }
+
+    /* ── PREVENTION ───────────────────────────────────────── */
+    #cegah { background: var(--warm); }
+    .prevent-grid {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem;
+      align-items: start;
+    }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .checklist li {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--white); border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+      font-size: .92rem; line-height: 1.55;
+      border: 1px solid rgba(0,0,0,.05);
+    }
+    .check-icon {
+      width: 24px; height: 24px; flex-shrink: 0;
+      background: rgba(200,16,46,0.1); border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: .7rem; color: var(--red);
+      font-weight: 900;
+    }
+    .report-steps { display: flex; flex-direction: column; gap: .75rem; }
+    .report-step {
+      display: flex; gap: 1rem; align-items: center;
+      background: var(--white); border-radius: 10px;
+      padding: 1rem 1.3rem;
+      border: 1px solid rgba(0,0,0,.05);
+    }
+    .step-num {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--red); color: var(--white);
+      border-radius: 50%; display: grid; place-items: center;
+      font-size: .78rem; font-weight: 800;
+    }
+    .step-text { font-size: .88rem; line-height: 1.45; }
+    .step-text strong { display: block; font-weight: 700; margin-bottom: .15rem; }
+
+    /* ── HOTLINE ──────────────────────────────────────────── */
+    #hotline {
+      background: var(--dark);
+      text-align: center;
+    }
+    #hotline .section-title { color: var(--white); }
+    .hotline-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .hotline-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 2rem 1.5rem;
+      text-decoration: none;
+      transition: background .2s, transform .15s, border-color .2s;
+    }
+    .hotline-card:hover {
+      background: rgba(200,16,46,.15);
+      border-color: rgba(200,16,46,.5);
+      transform: translateY(-3px);
+    }
+    .hotline-emoji { font-size: 2rem; margin-bottom: .8rem; display: block; }
+    .hotline-org { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: .3rem; }
+    .hotline-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--white); margin-bottom: .3rem; }
+    .hotline-desc { font-size: .78rem; color: rgba(255,255,255,.45); }
+    .hotline-cta {
+      margin-top: 3rem;
+      font-size: .9rem; color: rgba(255,255,255,.45); line-height: 1.7;
+    }
+    .hotline-cta a { color: var(--red); text-decoration: none; }
+    .hotline-cta a:hover { text-decoration: underline; }
+    .emergency-banner {
+      margin-top: 2.5rem;
+      background: rgba(200,16,46,.15);
+      border: 1px solid rgba(200,16,46,.3);
+      border-radius: 12px; padding: 1.5rem 2rem;
+      display: flex; align-items: center; gap: 1.5rem;
+      flex-wrap: wrap; justify-content: center;
+      color: var(--white);
+    }
+    .emergency-banner strong { color: var(--red); font-size: 1.05rem; }
+    .emergency-banner p { font-size: .88rem; color: rgba(255,255,255,.6); }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      background: #080808;
+      padding: 4rem clamp(1.5rem,8vw,8rem) 2rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-brand .nav-logo { font-size: 1.3rem; display: block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: .85rem; color: rgba(255,255,255,.35); line-height: 1.7; max-width: 30ch; }
+    .footer-col h4 { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .footer-col a { font-size: .85rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--red); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      font-size: .78rem; color: rgba(255,255,255,.25);
+    }
+
+    /* ── ANIMATIONS ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes barGrow {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      #hero { grid-template-columns: 1fr; padding: 120px 1.5rem 60px; }
+      .hero-right { margin-top: 3rem; }
+      .apa-grid, .data-layout, .bully-layout, .prevent-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .stat-cards { grid-template-columns: 1fr; }
+      .stat-card.featured { grid-column: auto; }
+      .footer-grid { grid-template-columns: 1fr; }
+      section { padding: 70px 1.5rem; }
+    }
+  </style>
 </head>
-
 <body>
-    <h1>Hello World!</h1>
-</body>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Stop<span>Kekerasan</span></div>
+  <ul class="nav-links">
+    <li><a href="#apa">Apa Itu?</a></li>
+    <li><a href="#bentuk">Bentuk</a></li>
+    <li><a href="#data">Data</a></li>
+    <li><a href="#penyebab">Penyebab</a></li>
+    <li><a href="#dampak">Dampak</a></li>
+    <li><a href="#cegah">Cegah</a></li>
+    <li><a href="#hotline" class="nav-cta">Laporkan</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">STOP</div>
+  <div class="hero-left">
+    <span class="hero-eyebrow">Edukasi Kekerasan</span>
+    <h1 class="hero-title">Bersama Kita <em>Hentikan</em> Kekerasan</h1>
+    <p class="hero-desc">
+      Kekerasan bukan hanya fisik — ucapan yang merendahkan, ancaman, dan pengucilan juga termasuk bentuk kekerasan. Kenali, cegah, dan laporkan.
+    </p>
+    <div class="hero-actions">
+      <a href="#data" class="btn-primary">↓ Lihat Data Terkini</a>
+      <a href="#hotline" class="btn-outline">☎ Hubungi Hotline</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-cards">
+      <div class="stat-card featured">
+        <span class="stat-year">Komnas Perempuan – 2024</span>
+        <div class="stat-num">330.097</div>
+        <div class="stat-label">kasus kekerasan berbasis gender tercatat — naik 14,17% dari tahun sebelumnya</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-year">KPAI – 2023</span>
+        <div class="stat-num">3.800</div>
+        <div class="stat-label">kasus perundungan anak, hampir separuh di lingkungan pendidikan</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-year">JPPI – 2024</span>
+        <div class="stat-num">573</div>
+        <div class="stat-label">kasus kekerasan di sekolah — naik 2x lipat dari 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>DIAM BUKAN SOLUSI, PEDULI ADALAH AKSI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>KENALI · CEGAH · LAPORKAN</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>KEKERASAN BISA TERJADI DI MANA SAJA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>SUARA ANDA DAPAT MENYELAMATKAN SESAMA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HENTIKAN KEKERASAN DALAM MASYARAKAT</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DIAM BUKAN SOLUSI, PEDULI ADALAH AKSI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>KENALI · CEGAH · LAPORKAN</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>KEKERASAN BISA TERJADI DI MANA SAJA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>SUARA ANDA DAPAT MENYELAMATKAN SESAMA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HENTIKAN KEKERASAN DALAM MASYARAKAT</span>
+  </div>
+</div>
+
+<!-- APA ITU KEKERASAN -->
+<section id="apa">
+  <div class="apa-grid">
+    <div class="reveal">
+      <div class="section-tag">Definisi</div>
+      <h2 class="section-title">Apa Itu Kekerasan?</h2>
+      <ul class="definition-points">
+        <li>
+          <div class="def-icon red">⚡</div>
+          <div>Kekerasan dalam masyarakat adalah tindakan yang menyebabkan <strong>penderitaan atau kerugian</strong> bagi orang lain, baik secara fisik, mental, seksual, ekonomi, maupun sosial.</div>
+        </li>
+        <li>
+          <div class="def-icon red">🏠</div>
+          <div>Kekerasan dapat terjadi di <strong>rumah, sekolah, tempat kerja</strong>, lingkungan pergaulan, hingga media sosial dan ruang digital.</div>
+        </li>
+        <li>
+          <div class="def-icon red">🗣️</div>
+          <div>Kekerasan <strong>bukan hanya memukul</strong>. Ucapan yang merendahkan, ancaman, pelecehan, dan pengucilan juga termasuk bentuk kekerasan yang nyata.</div>
+        </li>
+        <li>
+          <div class="def-icon red">⚖️</div>
+          <div>Di Indonesia, kekerasan diatur dalam <strong>UU Tindak Pidana Kekerasan Seksual (UU TPKS)</strong> dan berbagai peraturan perlindungan anak dan perempuan.</div>
+        </li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="quote-block">
+        <p class="quote-text">"Kekerasan merusak banyak hal. Mari bersama menciptakan lingkungan yang <em>aman, nyaman,</em> dan saling menghargai."</p>
+        <p class="quote-sub">Kekerasan sering terjadi bukan karena satu faktor saja, tetapi karena gabungan dari masalah pribadi, sosial, dan lingkungan. Mengenali bentuknya adalah langkah pertama pencegahan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENTUK KEKERASAN -->
+<section id="bentuk">
+  <div class="section-header reveal">
+    <div class="section-tag">Kategorisasi</div>
+    <h2 class="section-title">Bentuk-Bentuk Kekerasan</h2>
+    <p class="section-lead">Kenali setiap bentuknya agar kita lebih waspada dan bisa mencegahnya sejak dini.</p>
+  </div>
+  <div class="types-grid">
+    <div class="type-card reveal">
+      <div class="type-num">01</div>
+      <div class="type-icon">👊</div>
+      <h3 class="type-title">Kekerasan Fisik</h3>
+      <p class="type-desc">Memukul, menendang, mendorong, atau melukai tubuh seseorang secara langsung. Termasuk penganiayaan dan tindakan yang meninggalkan bekas fisik.</p>
+    </div>
+    <div class="type-card reveal">
+      <div class="type-num">02</div>
+      <div class="type-icon">💬</div>
+      <h3 class="type-title">Kekerasan Verbal</h3>
+      <p class="type-desc">Menghina, mengejek, membentak, atau berkata kasar. Kalimat yang merendahkan martabat seseorang — meski tanpa kontak fisik — tetap merupakan kekerasan.</p>
+    </div>
+    <div class="type-card reveal">
+      <div class="type-num">03</div>
+      <div class="type-icon">🧠</div>
+      <h3 class="type-title">Kekerasan Psikis</h3>
+      <p class="type-desc">Mengancam, mempermalukan, mengintimidasi, atau membuat korban merasa takut, tidak berdaya, dan kehilangan kepercayaan diri secara berkelanjutan.</p>
+    </div>
+    <div class="type-card reveal">
+      <div class="type-num">04</div>
+      <div class="type-icon">🚫</div>
+      <h3 class="type-title">Kekerasan Seksual</h3>
+      <p class="type-desc">Pelecehan, sentuhan tidak pantas, pemaksaan, atau komentar seksual yang tidak diinginkan. Termasuk kekerasan seksual online dan eksploitasi seksual anak.</p>
+    </div>
+    <div class="type-card reveal">
+      <div class="type-num">05</div>
+      <div class="type-icon">💰</div>
+      <h3 class="type-title">Kekerasan Ekonomi</h3>
+      <p class="type-desc">Mengontrol keuangan secara paksa, memaksa bekerja di luar kemauan, atau membatasi akses seseorang terhadap sumber daya ekonomi untuk menciptakan ketergantungan.</p>
+    </div>
+    <div class="type-card reveal">
+      <div class="type-num">06</div>
+      <div class="type-icon">📱</div>
+      <h3 class="type-title">Kekerasan Digital</h3>
+      <p class="type-desc">Perundungan online (cyberbullying), penyebaran foto atau video pribadi tanpa izin, ancaman atau pelecehan lewat media sosial, dan doxing (penyebaran data pribadi).</p>
+    </div>
+  </div>
+</section>
+
+<!-- DATA TERKINI -->
+<section id="data">
+  <div class="section-header reveal">
+    <div class="section-tag">Fakta & Angka</div>
+    <h2 class="section-title">Data Kekerasan di Indonesia (2022–2024)</h2>
+    <p class="section-lead">Data resmi dari Komnas Perempuan, KPAI, dan Kementerian PPPA menunjukkan tren yang mengkhawatirkan.</p>
+  </div>
+  <div class="data-layout">
+    <div class="reveal">
+      <div class="chart-area">
+        <div class="chart-title">Kasus Kekerasan Berbasis Gender terhadap Perempuan (Komnas Perempuan)</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <span class="bar-year">2022</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            <span class="bar-val">457.895</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-year">2023</span>
+            <div class="bar-track"><div class="bar-fill" style="width:87.8%"></div></div>
+            <span class="bar-val">401.975</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-year">2024</span>
+            <div class="bar-track"><div class="bar-fill" style="width:72.1%"></div></div>
+            <span class="bar-val">330.097</span>
+          </div>
+        </div>
+      </div>
+      <div class="chart-area" style="margin-top:1.5rem">
+        <div class="chart-title">Kasus Kekerasan di Lingkungan Pendidikan (JPPI)</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <span class="bar-year">2020</span>
+            <div class="bar-track"><div class="bar-fill" style="width:15.9%"></div></div>
+            <span class="bar-val">91</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-year">2021</span>
+            <div class="bar-track"><div class="bar-fill" style="width:24.8%"></div></div>
+            <span class="bar-val">142</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-year">2022</span>
+            <div class="bar-track"><div class="bar-fill" style="width:33.8%"></div></div>
+            <span class="bar-val">194</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-year">2023</span>
+            <div class="bar-track"><div class="bar-fill" style="width:49.7%"></div></div>
+            <span class="bar-val">285</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-year">2024</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            <span class="bar-val">573</span>
+          </div>
+        </div>
+      </div>
+      <div class="data-note">
+        <strong>⚠ Fenomena Gunung Es:</strong> Data yang tercatat hanyalah sebagian kecil dari kasus yang sebenarnya terjadi. Banyak korban belum berani melapor karena stigma sosial, ketakutan, dan keterbatasan akses layanan. — <em>Komnas Perempuan & KPAI</em>
+      </div>
+    </div>
+    <div class="stat-highlights reveal">
+      <div class="sh-card">
+        <div class="sh-num">34.682</div>
+        <div class="sh-label">perempuan menjadi korban kekerasan yang tercatat dalam sistem data tiga lembaga sepanjang 2023</div>
+        <div class="sh-source">Sumber: Komnas Perempuan (Agustus 2024)</div>
+      </div>
+      <div class="sh-card">
+        <div class="sh-num">15.621</div>
+        <div class="sh-label">kasus kekerasan seksual — jenis kekerasan tertinggi yang dialami perempuan pada data 2023</div>
+        <div class="sh-source">Sumber: Komnas Perempuan</div>
+      </div>
+      <div class="sh-card">
+        <div class="sh-num">35.025</div>
+        <div class="sh-label">perempuan dan anak menjadi korban kekerasan berdasarkan data SIMFONI PPA tahun 2025</div>
+        <div class="sh-source">Sumber: Kementerian PPPA (2025)</div>
+      </div>
+      <div class="sh-card">
+        <div class="sh-num">+14,17%</div>
+        <div class="sh-label">peningkatan kasus kekerasan berbasis gender pada tahun 2024 dibanding tahun 2023</div>
+        <div class="sh-source">Sumber: CATAHU Komnas Perempuan 2024</div>
+      </div>
+      <div class="sh-card">
+        <div class="sh-num">480</div>
+        <div class="sh-label">kasus perundungan siber (cyberbullying) hanya pada triwulan pertama 2024 — naik lebih dari 100%</div>
+        <div class="sh-source">Sumber: SAFEnet Q1 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PENYEBAB -->
+<section id="penyebab">
+  <div class="section-header reveal">
+    <div class="section-tag">Akar Masalah</div>
+    <h2 class="section-title">Apa Penyebab Kekerasan?</h2>
+    <p class="section-lead">Kekerasan jarang disebabkan oleh satu faktor tunggal. Ia tumbuh dari kombinasi masalah individu, sosial, dan lingkungan.</p>
+  </div>
+  <div class="causes-grid">
+    <div class="cause-card reveal">
+      <div class="cause-icon-wrap">💢</div>
+      <div class="cause-content">
+        <h3>Kurangnya Pengendalian Emosi</h3>
+        <p>Emosi yang tidak terkendali — seperti amarah, frustrasi, dan cemburu — dapat memicu tindakan kekerasan jika tidak dikelola dengan baik.</p>
+      </div>
+    </div>
+    <div class="cause-card reveal">
+      <div class="cause-icon-wrap">🏚️</div>
+      <div class="cause-content">
+        <h3>Lingkungan yang Buruk</h3>
+        <p>Lingkungan yang terbiasa dengan kekerasan membuat kekerasan dianggap hal yang biasa dan dapat diterima, sehingga siklus kekerasan terus berlanjut.</p>
+      </div>
+    </div>
+    <div class="cause-card reveal">
+      <div class="cause-icon-wrap">💸</div>
+      <div class="cause-content">
+        <h3>Tekanan Ekonomi & Masalah Keluarga</h3>
+        <p>Masalah keuangan, kemiskinan, dan konflik dalam keluarga dapat menciptakan tekanan yang mendorong seseorang melakukan kekerasan.</p>
+      </div>
+    </div>
+    <div class="cause-card reveal">
+      <div class="cause-icon-wrap">📚</div>
+      <div class="cause-content">
+        <h3>Rendahnya Pendidikan & Kesadaran Hukum</h3>
+        <p>Kurangnya pengetahuan membuat seseorang tidak memahami batasan dan akibat hukum dari tindakan kekerasan yang dilakukan.</p>
+      </div>
+    </div>
+    <div class="cause-card reveal">
+      <div class="cause-icon-wrap">👑</div>
+      <div class="cause-content">
+        <h3>Penyalahgunaan Kekuasaan</h3>
+        <p>Kekuasaan yang digunakan untuk mengintimidasi dan merendahkan orang lain — termasuk oleh tokoh pendidikan, agama, dan pejabat.</p>
+      </div>
+    </div>
+    <div class="cause-card reveal">
+      <div class="cause-icon-wrap">🔄</div>
+      <div class="cause-content">
+        <h3>Budaya yang Menormalisasi Kekerasan</h3>
+        <p>Budaya patriarki, diskriminasi, dan pengaruh konten kekerasan di media sosial dan game dapat membenarkan tindakan kekerasan.</p>
+      </div>
+    </div>
+  </div>
+  <div class="causes-bottom reveal">
+    ⚠️ <strong>Penting untuk dipahami:</strong> Kekerasan sering terjadi bukan karena satu faktor saja, tetapi karena <em>gabungan dari masalah pribadi, sosial, dan lingkungan</em>. Data Komnas Perempuan menunjukkan bahwa selama tiga tahun terakhir, jumlah pelaku dari pihak yang seharusnya menjadi panutan dan pelindung — seperti tokoh agama dan pejabat — meningkat 9%, melampaui rata-rata 21 tahun sebesar 5%.
+  </div>
+</section>
+
+<!-- DAMPAK KEKERASAN -->
+<section id="dampak">
+  <div class="section-header reveal">
+    <div class="section-tag">Konsekuensi</div>
+    <h2 class="section-title">Dampak Kekerasan</h2>
+    <p class="section-lead">Kekerasan merusak banyak hal — dari individu hingga tatanan masyarakat secara keseluruhan.</p>
+  </div>
+  <div class="impact-grid reveal">
+    <div class="impact-group">
+      <div class="impact-header red">👤 Bagi Korban</div>
+      <div class="impact-body">
+        <ul>
+          <li>Luka fisik dan cedera yang membutuhkan penanganan medis</li>
+          <li>Trauma, depresi, dan rasa takut yang berkelanjutan</li>
+          <li>Menurunnya rasa percaya diri dan harga diri</li>
+          <li>Gangguan dalam belajar atau bekerja secara produktif</li>
+          <li>Merasa tidak aman, terisolasi, dan kehilangan harapan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="impact-group">
+      <div class="impact-header">👨‍👩‍👧 Bagi Keluarga</div>
+      <div class="impact-body">
+        <ul>
+          <li>Hubungan keluarga menjadi tidak harmonis dan penuh ketegangan</li>
+          <li>Muncul rasa cemas dan tidak aman dalam kehidupan rumah tangga</li>
+          <li>Anak dapat meniru perilaku kekerasan yang disaksikan</li>
+          <li>Suasana rumah menjadi tidak nyaman sebagai tempat berlindung</li>
+        </ul>
+      </div>
+    </div>
+    <div class="impact-group">
+      <div class="impact-header">🏙️ Bagi Masyarakat</div>
+      <div class="impact-body">
+        <ul>
+          <li>Lingkungan menjadi tidak aman dan tidak nyaman untuk semua</li>
+          <li>Meningkatnya konflik sosial dan perpecahan antarwarga</li>
+          <li>Menurunnya rasa kepedulian dan solidaritas antarwarga</li>
+          <li>Menghambat pembangunan masyarakat yang sehat dan bermartabat</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BULLYING FOCUS (DATA TERKINI) -->
+<section id="bullying">
+  <div class="section-header reveal">
+    <div class="section-tag">Sorotan Khusus</div>
+    <h2 class="section-title">Perundungan (Bullying) di Indonesia</h2>
+    <p class="section-lead">Tren perundungan di lingkungan pendidikan terus meningkat tajam dalam 5 tahun terakhir dan menjadi darurat nasional.</p>
+  </div>
+  <div class="bully-layout">
+    <div class="bully-timeline reveal">
+      <div class="bully-year">
+        <span class="bully-year-label">2020</span>
+        <div class="bully-year-body">
+          <h3>91 Kasus</h3>
+          <p>Kekerasan di satuan pendidikan tercatat — data JPPI</p>
+        </div>
+      </div>
+      <div class="bully-year">
+        <span class="bully-year-label">2021</span>
+        <div class="bully-year-body">
+          <h3>142 Kasus</h3>
+          <p>Naik 56% dari tahun sebelumnya — data JPPI</p>
+        </div>
+      </div>
+      <div class="bully-year">
+        <span class="bully-year-label">2022</span>
+        <div class="bully-year-body">
+          <h3>194 Kasus</h3>
+          <p>Tren konsisten meningkat setiap tahun — data JPPI</p>
+        </div>
+      </div>
+      <div class="bully-year">
+        <span class="bully-year-label">2023</span>
+        <div class="bully-year-body">
+          <h3>3.800 Kasus</h3>
+          <p>Data KPAI — hampir separuh terjadi di sekolah & pesantren. JPPI mencatat 285 kasus kekerasan di satuan pendidikan.</p>
+        </div>
+      </div>
+      <div class="bully-year">
+        <span class="bully-year-label">2024</span>
+        <div class="bully-year-body">
+          <h3>573 Kasus</h3>
+          <p>Kekerasan di sekolah (JPPI) — naik lebih dari 2× lipat dari 2023. Cyberbullying melonjak 100%+ (SAFEnet Q1 2024).</p>
+        </div>
+      </div>
+    </div>
+    <div class="bully-facts reveal">
+      <div class="bully-fact">
+        <h4>🎒 Jenjang Paling Rentan</h4>
+        <p>26% korban perundungan adalah siswa SD, diikuti SMP (25%) dan SMA (18,75%). Anak-anak usia awal pendidikan paling rentan. — JPPI & KPAI</p>
+      </div>
+      <div class="bully-fact">
+        <h4>📍 Wilayah Tertinggi</h4>
+        <p>Provinsi dengan kasus perundungan tertinggi 2024: Jawa Timur (81 kasus), Jawa Barat (56 kasus). — JPPI 2024</p>
+      </div>
+      <div class="bully-fact">
+        <h4>💪 Dominasi Bullying Fisik</h4>
+        <p>Sekitar 55,5% kasus bullying adalah bullying fisik. Namun cyberbullying kini tumbuh paling cepat seiring maraknya media sosial. — JPPI & KPAI</p>
+      </div>
+      <div class="bully-fact">
+        <h4>📱 Perundungan Digital Meledak</h4>
+        <p>SAFEnet mencatat 480 kasus perundungan siber hanya di triwulan pertama 2024 — meningkat lebih dari 100% dibanding periode yang sama tahun sebelumnya.</p>
+      </div>
+      <div class="bully-fact">
+        <h4>⚠️ Dampak Paling Serius</h4>
+        <p>Sepanjang awal 2024, KPAI mencatat 46 kasus anak yang mengakhiri hidupnya akibat kekerasan — hampir separuhnya terjadi di satuan pendidikan. — KPAI 2024</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CEGAH & LAPORKAN -->
+<section id="cegah">
+  <div class="section-header reveal">
+    <div class="section-tag">Tindakan Nyata</div>
+    <h2 class="section-title">Cegah, Peduli, dan Laporkan</h2>
+    <p class="section-lead">Setiap orang memiliki peran dalam mencegah dan menghentikan kekerasan di sekitarnya.</p>
+  </div>
+  <div class="prevent-grid">
+    <div class="reveal">
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:1.2rem;color:var(--red);text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;">Cara Mencegah Kekerasan</h3>
+      <ul class="checklist">
+        <li><span class="check-icon">✓</span> Hargai perbedaan dan semua orang tanpa memandang latar belakang</li>
+        <li><span class="check-icon">✓</span> Selesaikan masalah dengan komunikasi yang baik dan empati</li>
+        <li><span class="check-icon">✓</span> Tidak membalas kekerasan dengan kekerasan</li>
+        <li><span class="check-icon">✓</span> Berani menegur tindakan kekerasan dengan cara yang aman</li>
+        <li><span class="check-icon">✓</span> Bangun lingkungan yang peduli dan saling melindungi</li>
+        <li><span class="check-icon">✓</span> Tingkatkan literasi digital anak dan pantau penggunaan media sosial</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <h3 style="font-size:.8rem;font-weight:700;margin-bottom:1.2rem;color:var(--red);text-transform:uppercase;letter-spacing:.06em;">Jika Melihat atau Mengalami Kekerasan</h3>
+      <div class="report-steps">
+        <div class="report-step">
+          <span class="step-num">1</span>
+          <div class="step-text"><strong>Cari Tempat Aman</strong>Segera menjauh dari situasi berbahaya dan cari tempat yang aman</div>
+        </div>
+        <div class="report-step">
+          <span class="step-num">2</span>
+          <div class="step-text"><strong>Ceritakan pada Orang Dipercaya</strong>Bicara kepada orang tua, guru, keluarga, atau teman yang dapat diandalkan</div>
+        </div>
+        <div class="report-step">
+          <span class="step-num">3</span>
+          <div class="step-text"><strong>Simpan Bukti</strong>Dokumentasikan pesan, foto, atau rekaman jika ada sebagai bukti pelaporan</div>
+        </div>
+        <div class="report-step">
+          <span class="step-num">4</span>
+          <div class="step-text"><strong>Laporkan ke Pihak Berwenang</strong>Lapor ke guru, RT/RW, lembaga perlindungan, atau kepolisian terdekat</div>
+        </div>
+        <div class="report-step">
+          <span class="step-num">5</span>
+          <div class="step-text"><strong>Hubungi Hotline</strong>Gunakan layanan bantuan resmi yang tersedia 24 jam</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTLINE -->
+<section id="hotline">
+  <div class="section-header reveal">
+    <div class="section-tag">Bantuan Darurat</div>
+    <h2 class="section-title">Layanan Bantuan & Laporan</h2>
+  </div>
+  <div class="hotline-grid reveal">
+    <a href="tel:110" class="hotline-card">
+      <span class="hotline-emoji">🚔</span>
+      <div class="hotline-org">Polisi</div>
+      <div class="hotline-num">110</div>
+      <div class="hotline-desc">Darurat kepolisian, laporan kriminal</div>
+    </a>
+    <a href="tel:129" class="hotline-card">
+      <span class="hotline-emoji">💛</span>
+      <div class="hotline-org">Kementerian PPPA</div>
+      <div class="hotline-num">129</div>
+      <div class="hotline-desc">Perlindungan perempuan & anak</div>
+    </a>
+    <a href="tel:08111129129" class="hotline-card">
+      <span class="hotline-emoji">🔴</span>
+      <div class="hotline-org">Komnas Perempuan</div>
+      <div class="hotline-num">0811-129-129</div>
+      <div class="hotline-desc">Kekerasan berbasis gender</div>
+    </a>
+    <a href="https://www.lapor.go.id" target="_blank" class="hotline-card">
+      <span class="hotline-emoji">🌐</span>
+      <div class="hotline-org">Pengaduan Online</div>
+      <div class="hotline-num">lapor.go.id</div>
+      <div class="hotline-desc">Portal pengaduan nasional</div>
+    </a>
+  </div>
+  <div class="emergency-banner reveal">
+    <div>
+      <strong>⚡ JANGAN DIAM.</strong>
+      <p>Suara Anda dapat menyelamatkan sesama. Segera hubungi layanan di atas jika Anda menjadi korban atau menyaksikan tindak kekerasan.</p>
+    </div>
+  </div>
+  <p class="hotline-cta reveal">
+    Untuk informasi lebih lanjut, kunjungi <a href="https://komnasperempuan.go.id" target="_blank">komnasperempuan.go.id</a> atau <a href="https://www.kpai.go.id" target="_blank">kpai.go.id</a>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo">Stop<span>Kekerasan</span></span>
+      <p>Website edukasi tentang kekerasan di Indonesia. Kenali, cegah, dan laporkan untuk menciptakan masyarakat yang aman, damai, dan saling menghargai.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <ul>
+        <li><a href="#apa">Apa Itu Kekerasan?</a></li>
+        <li><a href="#bentuk">Bentuk Kekerasan</a></li>
+        <li><a href="#data">Data & Statistik</a></li>
+        <li><a href="#penyebab">Penyebab</a></li>
+        <li><a href="#dampak">Dampak</a></li>
+        <li><a href="#cegah">Cara Mencegah</a></li>
+        <li><a href="#hotline">Laporkan</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Sumber Data</h4>
+      <ul>
+        <li><a href="https://komnasperempuan.go.id" target="_blank">Komnas Perempuan</a></li>
+        <li><a href="https://www.kpai.go.id" target="_blank">KPAI</a></li>
+        <li><a href="https://www.kemenpppa.go.id" target="_blank">Kementerian PPPA</a></li>
+        <li><a href="https://www.lapor.go.id" target="_blank">lapor.go.id</a></li>
+        <li><a href="https://pusiknas.polri.go.id" target="_blank">Pusiknas Polri</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 StopKekerasan — Tugas Mata Kuliah Pengembangan Web</span>
+    <span>Data: Komnas Perempuan · KPAI · Kementerian PPPA</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '64px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(14,14,14,0.98)';
+      links.style.padding = '1.5rem 2rem';
+      links.style.gap = '1rem';
+    }
+  }
+
+  // Smooth close mobile menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      links.style.display = '';
+    });
+  });
+</script>
+</body>
 </html>
