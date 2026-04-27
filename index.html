@@ -4,2175 +4,1255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STOP KEKERASAN — Edukasi & Kesadaran</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Stop Kekerasan Dalam Masyarakat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ============================================
-           CSS RESET & VARIABLES
-           ============================================ */
-        
-         :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #e94560;
-            --accent-light: #ff6b81;
-            --gold: #f5a623;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --gray: #6c757d;
-            --dark-gray: #343a40;
-            --gradient-1: linear-gradient(135deg, #e94560 0%, #ff6b81 50%, #f5a623 100%);
-            --gradient-2: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            --gradient-3: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
-            --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.2);
-            --radius: 16px;
-            --radius-sm: 10px;
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+         :root {
+            --red-primary: #C41E3A;
+            --red-dark: #8B0000;
+            --red-light: #DC143C;
+            --black: #1a1a1a;
+            --dark-gray: #2d2d2d;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dark-gray);
-            background: var(--light);
-            line-height: 1.7;
-            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
         }
-        /* ============================================
-           SCROLLBAR
-           ============================================ */
+        /* Torn Paper Effect */
         
-         ::-webkit-scrollbar {
-            width: 8px;
+        .torn-edge {
+            position: relative;
         }
         
-         ::-webkit-scrollbar-track {
-            background: var(--light);
-        }
-        
-         ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 10px;
-        }
-        /* ============================================
-           NAVIGATION
-           ============================================ */
-        
-        .navbar {
-            position: fixed;
-            top: 0;
+        .torn-edge::before {
+            content: '';
+            position: absolute;
+            top: -10px;
             left: 0;
             right: 0;
-            z-index: 1000;
-            padding: 15px 0;
-            transition: var(--transition);
-            background: transparent;
+            height: 20px;
+            background: linear-gradient(45deg, transparent 33.333%, var(--white) 33.333%, var(--white) 66.667%, transparent 66.667%), linear-gradient(-45deg, transparent 33.333%, var(--white) 33.333%, var(--white) 66.667%, transparent 66.667%);
+            background-size: 20px 40px;
+            background-position: 0 -20px, 0 -20px;
         }
+        /* Navigation */
         
-        .navbar.scrolled {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 10px 0;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        nav {
+            background: var(--black);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
         
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 900;
+        .logo {
             color: var(--white);
-            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 900;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
         }
         
-        .nav-logo i {
-            color: var(--accent);
-            font-size: 1.4rem;
+        .logo i {
+            color: var(--red-primary);
         }
         
         .nav-links {
             display: flex;
+            gap: 2rem;
             list-style: none;
-            gap: 8px;
         }
         
         .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
             color: var(--white);
-            background: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
         }
         
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
+        .nav-links a:hover {
+            color: var(--red-primary);
         }
-        
-        .nav-toggle span {
-            width: 25px;
-            height: 2.5px;
-            background: var(--white);
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-        /* ============================================
-           HERO SECTION
-           ============================================ */
+        /* Hero Section */
         
         .hero {
+            background: var(--black);
             min-height: 100vh;
-            background: var(--gradient-2);
-            position: relative;
             display: flex;
             align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+            position: relative;
             overflow: hidden;
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800"><path fill="%23222" fill-opacity="0.5" d="M0,400 L50,380 L100,400 L150,390 L200,410 L250,400 L300,385 L350,405 L400,395 L450,410 L500,400 L550,390 L600,405 L650,395 L700,410 L750,400 L800,385 L850,405 L900,395 L950,410 L1000,400 L1050,390 L1100,405 L1150,395 L1200,410 L1250,400 L1300,385 L1350,405 L1400,395 L1440,410 L1440,800 L0,800 Z"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
         }
         
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(245, 166, 35, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-        
-        @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-40px) rotate(5deg);
-            }
-        }
-        
-        .hero-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(233, 69, 96, 0.3);
-            border-radius: 50%;
-            animation: particleFloat linear infinite;
-        }
-        
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(720deg);
-                opacity: 0;
-            }
+        .hero-container {
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
         }
         
         .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            color: var(--white);
         }
         
-        .hero-text {
-            animation: slideUp 1s ease-out;
+        .hero-subtitle {
+            background: var(--red-primary);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transform: skew(-5deg);
         }
         
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(233, 69, 96, 0.15);
-            border: 1px solid rgba(233, 69, 96, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: var(--accent-light);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
             text-transform: uppercase;
         }
         
-        .hero-badge i {
-            animation: pulse 2s ease-in-out infinite;
+        .hero h1 .stop {
+            color: var(--red-primary);
+            display: block;
+            font-size: 6rem;
+            position: relative;
+        }
+        
+        .hero h1 .stop i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .hero h1 .kekerasan {
+            color: var(--white);
+            display: block;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+        
+        .hero-tagline {
+            background: var(--red-primary);
+            color: var(--white);
+            padding: 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            transform: skew(-3deg);
+            display: inline-block;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .btn-red {
+            background: var(--red-primary);
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(196, 30, 58, 0.3);
+        }
+        
+        .btn-red:hover {
+            background: var(--red-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(196, 30, 58, 0.4);
+        }
+        
+        .btn-white {
+            background: var(--white);
+            color: var(--black);
+        }
+        
+        .btn-white:hover {
+            background: var(--light-gray);
+            transform: translateY(-2px);
+        }
+        /* Hero Visual */
+        
+        .hero-visual {
+            position: relative;
+        }
+        
+        .silhouette-group {
+            position: relative;
+            width: 100%;
+            height: 600px;
+        }
+        
+        .silhouette {
+            position: absolute;
+            bottom: 0;
+        }
+        
+        .silhouette-main {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            opacity: 0.9;
+        }
+        
+        .silhouette-left {
+            left: 0;
+            width: 200px;
+            opacity: 0.6;
+        }
+        
+        .silhouette-right {
+            right: 0;
+            width: 250px;
+            opacity: 0.7;
+        }
+        
+        .hand-stop {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(196, 30, 58, 0.6);
+            animation: pulse 2s infinite;
+        }
+        
+        .hand-stop i {
+            font-size: 5rem;
+            color: var(--white);
         }
         
         @keyframes pulse {
             0%,
             100% {
-                transform: scale(1);
+                transform: translateX(-50%) scale(1);
             }
             50% {
-                transform: scale(1.2);
+                transform: translateX(-50%) scale(1.1);
             }
         }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
-            font-weight: 900;
-            color: var(--white);
-            line-height: 1.15;
-            margin-bottom: 20px;
-        }
-        
-        .hero h1 span {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-desc {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 35px;
-            max-width: 500px;
-            line-height: 1.8;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-        }
-        
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-            box-shadow: 0 8px 30px rgba(233, 69, 96, 0.4);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(233, 69, 96, 0.5);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent-light);
-            transform: translateY(-3px);
-        }
-        
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: slideUp 1s ease-out 0.3s both;
-        }
-        
-        .hero-card-stack {
-            position: relative;
-            width: 400px;
-            height: 450px;
-        }
-        
-        .hero-card {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            padding: 30px;
-            transition: var(--transition);
-        }
-        
-        .hero-card:nth-child(1) {
-            width: 320px;
-            top: 0;
-            left: 0;
-            z-index: 3;
-            animation: cardFloat1 6s ease-in-out infinite;
-        }
-        
-        .hero-card:nth-child(2) {
-            width: 280px;
-            top: 60px;
-            right: 0;
-            z-index: 2;
-            animation: cardFloat2 7s ease-in-out infinite;
-        }
-        
-        .hero-card:nth-child(3) {
-            width: 260px;
-            bottom: 0;
-            left: 30px;
-            z-index: 1;
-            animation: cardFloat3 8s ease-in-out infinite;
-        }
-        
-        @keyframes cardFloat1 {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        @keyframes cardFloat2 {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(15px);
-            }
-        }
-        
-        @keyframes cardFloat3 {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-        
-        .hero-card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-        
-        .hero-card:nth-child(1) .hero-card-icon {
-            background: rgba(233, 69, 96, 0.2);
-            color: var(--accent-light);
-        }
-        
-        .hero-card:nth-child(2) .hero-card-icon {
-            background: rgba(245, 166, 35, 0.2);
-            color: var(--gold);
-        }
-        
-        .hero-card:nth-child(3) .hero-card-icon {
-            background: rgba(102, 126, 234, 0.2);
-            color: #667eea;
-        }
-        
-        .hero-card h3 {
-            color: var(--white);
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-        
-        .hero-card p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.8rem;
-            line-height: 1.6;
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 50px;
-        }
-        
-        .hero-stat {
-            text-align: center;
-        }
-        
-        .hero-stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--accent-light);
-        }
-        
-        .hero-stat-label {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-        /* ============================================
-           SECTION STYLES
-           ============================================ */
-        
-        section {
-            padding: 100px 0;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(233, 69, 96, 0.08);
-            color: var(--accent);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title span {
-            color: var(--accent);
-        }
-        
-        .section-subtitle {
-            font-size: 1.05rem;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        /* ============================================
-           ABOUT / PENGERTIAN
-           ============================================ */
-        
-        #pengertian {
-            background: var(--white);
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .about-image {
-            position: relative;
-        }
-        
-        .about-image-main {
-            width: 100%;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-        }
-        
-        .about-image-main::before {
-            content: '';
-            display: block;
-            padding-top: 120%;
-            background: var(--gradient-2);
-        }
-        
-        .about-image-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .about-image-overlay i {
-            font-size: 4rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        .about-image-overlay h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
-        .about-image-overlay p {
-            font-size: 0.95rem;
-            opacity: 0.7;
-        }
-        
-        .about-floating-card {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            background: var(--white);
-            padding: 20px 25px;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        .about-floating-card .icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(233, 69, 96, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        
-        .about-floating-card h4 {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .about-floating-card p {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-        
-        .about-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--primary);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .about-content h2 span {
-            color: var(--accent);
-        }
-        
-        .about-content>p {
-            color: var(--gray);
-            margin-bottom: 30px;
-            font-size: 1.02rem;
-        }
-        
-        .about-features {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .about-feature {
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-        
-        .about-feature-icon {
-            width: 45px;
-            height: 45px;
-            min-width: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-        
-        .about-feature:nth-child(1) .about-feature-icon {
-            background: rgba(233, 69, 96, 0.1);
-            color: var(--accent);
-        }
-        
-        .about-feature:nth-child(2) .about-feature-icon {
-            background: rgba(245, 166, 35, 0.1);
-            color: var(--gold);
-        }
-        
-        .about-feature:nth-child(3) .about-feature-icon {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-        
-        .about-feature h4 {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .about-feature p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        /* ============================================
-           JENIS KEKERASAN
-           ============================================ */
-        
-        #jenis {
-            background: var(--light);
-        }
-        
-        .jenis-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .jenis-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 40px 30px;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .jenis-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            border-radius: var(--radius) var(--radius) 0 0;
-            transition: var(--transition);
-        }
-        
-        .jenis-card:nth-child(1)::before {
-            background: var(--accent);
-        }
-        
-        .jenis-card:nth-child(2)::before {
-            background: var(--gold);
-        }
-        
-        .jenis-card:nth-child(3)::before {
-            background: #667eea;
-        }
-        
-        .jenis-card:nth-child(4)::before {
-            background: #2ecc71;
-        }
-        
-        .jenis-card:nth-child(5)::before {
-            background: #e74c3c;
-        }
-        
-        .jenis-card:nth-child(6)::before {
-            background: #9b59b6;
-        }
-        
-        .jenis-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .jenis-card:hover::before {
-            height: 6px;
-        }
-        
-        .jenis-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 25px;
-            transition: var(--transition);
-        }
-        
-        .jenis-card:nth-child(1) .jenis-icon {
-            background: rgba(233, 69, 96, 0.1);
-            color: var(--accent);
-        }
-        
-        .jenis-card:nth-child(2) .jenis-icon {
-            background: rgba(245, 166, 35, 0.1);
-            color: var(--gold);
-        }
-        
-        .jenis-card:nth-child(3) .jenis-icon {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-        
-        .jenis-card:nth-child(4) .jenis-icon {
-            background: rgba(46, 204, 113, 0.1);
-            color: #2ecc71;
-        }
-        
-        .jenis-card:nth-child(5) .jenis-icon {
-            background: rgba(231, 76, 60, 0.1);
-            color: #e74c3c;
-        }
-        
-        .jenis-card:nth-child(6) .jenis-icon {
-            background: rgba(155, 89, 182, 0.1);
-            color: #9b59b6;
-        }
-        
-        .jenis-card:hover .jenis-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .jenis-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-        
-        .jenis-card p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-        /* ============================================
-           STATISTIK
-           ============================================ */
-        
-        #statistik {
-            background: var(--gradient-2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #statistik::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(233, 69, 96, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        
-        #statistik .section-title {
-            color: var(--white);
-        }
-        
-        #statistik .section-subtitle {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        #statistik .section-tag {
-            background: rgba(233, 69, 96, 0.2);
-            color: var(--accent-light);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-        
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            padding: 35px 25px;
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(233, 69, 96, 0.3);
-        }
-        
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--accent-light);
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .stat-icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        /* Timeline */
-        
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: rgba(233, 69, 96, 0.3);
-            border-radius: 3px;
-        }
-        
-        .timeline-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-        
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-        
-        .timeline-content {
-            width: 45%;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            padding: 25px;
-            transition: var(--transition);
-        }
-        
-        .timeline-content:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 16px;
-            height: 16px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            z-index: 2;
-            box-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
-        }
-        
-        .timeline-year {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--white);
-            padding: 4px 14px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .timeline-content h4 {
-            color: var(--white);
-            font-size: 1.05rem;
-            margin-bottom: 8px;
-        }
-        
-        .timeline-content p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
-            line-height: 1.7;
-        }
-        /* ============================================
-           KASUS TERKINI
-           ============================================ */
-        
-        #kasus {
-            background: var(--white);
-        }
-        
-        .kasus-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        
-        .kasus-card {
-            background: var(--light);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .kasus-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .kasus-card-header {
-            padding: 25px 25px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .kasus-date {
-            background: var(--accent);
-            color: var(--white);
-            padding: 10px 15px;
-            border-radius: var(--radius-sm);
-            text-align: center;
-            min-width: 65px;
-        }
-        
-        .kasus-date .day {
-            font-size: 1.5rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-        
-        .kasus-date .month {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .kasus-category {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .kategori-kdrt {
-            background: rgba(233, 69, 96, 0.1);
-            color: var(--accent);
-        }
-        
-        .kategori-bullying {
-            background: rgba(245, 166, 35, 0.1);
-            color: var(--gold);
-        }
-        
-        .kategori-siber {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-        
-        .kategori-seksual {
-            background: rgba(155, 89, 182, 0.1);
-            color: #9b59b6;
-        }
-        
-        .kasus-card-body {
-            padding: 20px 25px 25px;
-        }
-        
-        .kasus-card-body h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        
-        .kasus-card-body p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-        
-        .kasus-card-footer {
-            padding: 0 25px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .kasus-source {
-            font-size: 0.75rem;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .kasus-tag {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .kasus-tag span {
-            background: rgba(0, 0, 0, 0.05);
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            color: var(--gray);
-        }
-        /* ============================================
-           UNDANG-UNDANG
-           ============================================ */
-        
-        #hukum {
-            background: var(--light);
-        }
-        
-        .hukum-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-        
-        .hukum-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 35px 30px;
-            border-left: 4px solid var(--accent);
-            transition: var(--transition);
-        }
-        
-        .hukum-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .hukum-card:nth-child(2) {
-            border-left-color: var(--gold);
-        }
-        
-        .hukum-card:nth-child(3) {
-            border-left-color: #667eea;
-        }
-        
-        .hukum-card:nth-child(4) {
-            border-left-color: #2ecc71;
-        }
-        
-        .hukum-card:nth-child(5) {
-            border-left-color: #e74c3c;
-        }
-        
-        .hukum-card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: rgba(233, 69, 96, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-        
-        .hukum-card:nth-child(2) .hukum-card-icon {
-            background: rgba(245, 166, 35, 0.1);
-            color: var(--gold);
-        }
-        
-        .hukum-card:nth-child(3) .hukum-card-icon {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-        
-        .hukum-card:nth-child(4) .hukum-card-icon {
-            background: rgba(46, 204, 113, 0.1);
-            color: #2ecc71;
-        }
-        
-        .hukum-card:nth-child(5) .hukum-card-icon {
-            background: rgba(231, 76, 60, 0.1);
-            color: #e74c3c;
-        }
-        
-        .hukum-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .hukum-card p {
-            font-size: 0.88rem;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-        /* ============================================
-           DAMPAK
-           ============================================ */
-        
-        #dampak {
-            background: var(--white);
-        }
-        
-        .dampak-wrapper {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .dampak-category {
-            background: var(--light);
-            border-radius: var(--radius);
-            padding: 35px 30px;
-            transition: var(--transition);
-        }
-        
-        .dampak-category:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .dampak-category-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .dampak-category-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-        
-        .dampak-category:nth-child(1) .dampak-category-icon {
-            background: rgba(233, 69, 96, 0.1);
-            color: var(--accent);
-        }
-        
-        .dampak-category:nth-child(2) .dampak-category-icon {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-        
-        .dampak-category:nth-child(3) .dampak-category-icon {
-            background: rgba(245, 166, 35, 0.1);
-            color: var(--gold);
-        }
-        
-        .dampak-category h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .dampak-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .dampak-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-            line-height: 1.6;
-        }
-        
-        .dampak-list li i {
-            color: var(--accent);
-            margin-top: 5px;
-            font-size: 0.7rem;
-        }
-        /* ============================================
-           PENCEGAHAN
-           ============================================ */
-        
-        #pencegahan {
-            background: var(--gradient-2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #pencegahan .section-title {
-            color: var(--white);
-        }
-        
-        #pencegahan .section-subtitle {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        #pencegahan .section-tag {
-            background: rgba(233, 69, 96, 0.2);
-            color: var(--accent-light);
-        }
-        
-        .pencegahan-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-        
-        .pencegahan-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            padding: 35px 30px;
-            display: flex;
-            gap: 20px;
-            transition: var(--transition);
-        }
-        
-        .pencegahan-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-        
-        .pencegahan-number {
-            width: 45px;
-            height: 45px;
-            min-width: 45px;
-            border-radius: 12px;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--white);
-        }
-        
-        .pencegahan-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-        
-        .pencegahan-card p {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
-        }
-        /* ============================================
-           HELP / KONTAK DARURAT
-           ============================================ */
-        
-        #bantuan {
-            background: var(--white);
-        }
-        
-        .bantuan-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-        
-        .bantuan-card {
-            background: var(--light);
-            border-radius: var(--radius);
-            padding: 35px 25px;
-            text-align: center;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-        
-        .bantuan-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .bantuan-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--white);
-            margin: 0 auto 20px;
-            transition: var(--transition);
-        }
-        
-        .bantuan-card:hover .bantuan-icon {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
-        }
-        
-        .bantuan-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .bantuan-phone {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-        
-        .bantuan-card p {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-        /* ============================================
-           QUOTE SECTION
-           ============================================ */
+        /* Quote Section */
         
         .quote-section {
-            background: var(--gradient-1);
-            padding: 80px 0;
+            background: var(--red-primary);
+            color: var(--white);
+            padding: 3rem 5%;
             text-align: center;
+            position: relative;
         }
         
-        .quote-section blockquote {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--white);
+        .quote-section::before,
+        .quote-section::after {
+            content: '"';
+            font-size: 6rem;
+            position: absolute;
+            opacity: 0.3;
+            font-weight: 900;
+        }
+        
+        .quote-section::before {
+            top: -20px;
+            left: 50px;
+        }
+        
+        .quote-section::after {
+            bottom: -40px;
+            right: 50px;
+        }
+        
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 800;
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.4;
         }
         
-        .quote-section cite {
-            display: block;
-            margin-top: 20px;
-            font-style: normal;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
+        .quote-text span {
+            color: var(--black);
+            background: var(--white);
+            padding: 0 0.5rem;
         }
-        /* ============================================
-           FOOTER
-           ============================================ */
+        /* Section Headers */
         
-        .footer {
-            background: var(--primary);
-            padding: 60px 0 30px;
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
         }
         
-        .footer-grid {
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--black);
+            display: inline-block;
+            position: relative;
+            padding: 0 2rem;
+        }
+        
+        .section-header h2::before,
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 4px;
+            background: var(--red-primary);
+        }
+        
+        .section-header h2::before {
+            right: 100%;
+        }
+        
+        .section-header h2::after {
+            left: 100%;
+        }
+        
+        .section-subtitle {
+            color: var(--red-primary);
+            font-weight: 700;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        /* Stats Section */
+        
+        .stats-section {
+            padding: 5rem 5%;
+            background: var(--light-gray);
+        }
+        
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
-        .footer-brand h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--white);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-brand h3 i {
-            color: var(--accent);
-        }
-        
-        .footer-brand p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        
-        .footer-social {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .footer-social a {
-            width: 40px;
-            height: 40px;
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--red-primary);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--red-primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            transition: var(--transition);
-            text-decoration: none;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 2rem;
         }
         
-        .footer-social a:hover {
-            background: var(--accent);
-            border-color: var(--accent);
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--red-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-year {
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .stat-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        /* Types Section */
+        
+        .types-section {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+        
+        .types-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .type-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .type-item:hover {
+            background: var(--red-primary);
+            color: var(--white);
+            transform: translateX(10px);
+        }
+        
+        .type-item:hover .type-icon {
+            background: var(--white);
+            color: var(--red-primary);
+        }
+        
+        .type-item:hover .type-title {
             color: var(--white);
         }
         
-        .footer-col h4 {
+        .type-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--white);
-            font-size: 1rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+        
+        .type-content h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+            transition: color 0.3s;
+        }
+        
+        .type-content p {
+            font-size: 0.9rem;
+            color: #666;
+            transition: color 0.3s;
+        }
+        /* Timeline Section */
+        
+        .timeline-section {
+            padding: 5rem 5%;
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .timeline-section .section-header h2 {
+            color: var(--white);
+        }
+        
+        .timeline-section .section-header h2::before,
+        .timeline-section .section-header h2::after {
+            background: var(--red-primary);
+        }
+        
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--red-primary);
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+        
+        .timeline-content {
+            background: var(--white);
+            color: var(--black);
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -60px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -60px;
+        }
+        
+        .timeline-year {
+            background: var(--red-primary);
+            color: var(--white);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            font-weight: 800;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content h3 {
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--red-primary);
+        }
+        
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        /* Victim Section */
+        
+        .victim-section {
+            padding: 5rem 5%;
+            background: var(--light-gray);
+        }
+        
+        .victim-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .victim-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .victim-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .victim-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--red-primary);
+        }
+        
+        .victim-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .victim-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+        
+        .victim-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        /* Help Section */
+        
+        .help-section {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+        
+        .help-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .help-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid var(--red-primary);
+            transition: all 0.3s;
+        }
+        
+        .help-card:hover {
+            background: var(--red-primary);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+        
+        .help-card:hover .help-icon {
+            background: var(--white);
+            color: var(--red-primary);
+        }
+        
+        .help-card:hover .help-number {
+            background: var(--white);
+            color: var(--red-primary);
+        }
+        
+        .help-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--red-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .help-card h3 {
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .help-card p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .help-number {
+            background: var(--red-primary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.3rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        /* Steps Section */
+        
+        .steps-section {
+            background: var(--red-primary);
+            color: var(--white);
+            padding: 4rem 5%;
+            margin-top: 3rem;
+        }
+        
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .steps-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .step-item {
+            background: var(--white);
+            color: var(--black);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--red-primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+        
+        .step-item h4 {
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-item p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        /* Footer */
+        
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--red-primary);
+        }
+        
+        .footer-tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
             font-weight: 700;
         }
         
-        .footer-col ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        .footer-info {
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #333;
         }
+        /* Responsive */
         
-        .footer-col a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 0.88rem;
-            transition: var(--transition);
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero h1 .stop {
+                font-size: 4rem;
+            }
+            .hero-visual {
+                display: none;
+            }
+            .nav-links {
+                display: none;
+            }
+            .timeline-line {
+                left: 20px;
+            }
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+            .timeline-content::before {
+                left: -50px !important;
+                right: auto !important;
+            }
+            .types-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        
-        .footer-col a:hover {
-            color: var(--accent-light);
-            padding-left: 5px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-        }
-        
-        .footer-bottom a {
-            color: var(--accent-light);
-            text-decoration: none;
-        }
-        /* ============================================
-           BACK TO TOP
-           ============================================ */
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 999;
-            border: none;
-            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-        }
-        /* ============================================
-           ANIMATIONS (SCROLL REVEAL)
-           ============================================ */
+        /* Scroll Animation */
         
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(30px);
+            transition: all 0.8s;
         }
         
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
-        
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-visual {
-                display: none;
-            }
-            .hero-desc {
-                margin: 0 auto 35px;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-image {
-                order: -1;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            .jenis-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hukum-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .bantuan-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(26, 26, 46, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 20px;
-                gap: 5px;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .nav-toggle {
-                display: flex;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .jenis-grid {
-                grid-template-columns: 1fr;
-            }
-            .kasus-grid {
-                grid-template-columns: 1fr;
-            }
-            .dampak-wrapper {
-                grid-template-columns: 1fr;
-            }
-            .pencegahan-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hukum-grid {
-                grid-template-columns: 1fr;
-            }
-            .bantuan-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            .timeline::before {
-                left: 20px;
-            }
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                flex-direction: row;
-            }
-            .timeline-content {
-                width: calc(100% - 50px);
-                margin-left: auto;
-            }
-            .timeline-dot {
-                left: 20px;
-            }
-            .quote-section blockquote {
-                font-size: 1.5rem;
-            }
-            .hero-stats {
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
     </style>
 </head>
 
 <body>
-
-    <!-- ============================================
-         NAVIGATION
-         ============================================ -->
-    <nav class="navbar" id="navbar">
+    <!-- Navigation -->
+    <nav>
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <i class="fas fa-hand-fist"></i> STOP KEKERASAN
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#pengertian" class="active">Pengertian</a></li>
-                <li><a href="#jenis">Jenis</a></li>
+            <div class="logo">
+                <i class="fas fa-hand-paper"></i> STOP KEKERASAN
+            </div>
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
                 <li><a href="#statistik">Statistik</a></li>
-                <li><a href="#kasus">Kasus Terkini</a></li>
-                <li><a href="#hukum">Hukum</a></li>
-                <li><a href="#dampak">Dampak</a></li>
-                <li><a href="#pencegahan">Pencegahan</a></li>
+                <li><a href="#jenis">Jenis</a></li>
+                <li><a href="#timeline">Data</a></li>
                 <li><a href="#bantuan">Bantuan</a></li>
             </ul>
-            <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- ============================================
-         HERO SECTION
-         ============================================ -->
-    <section class="hero" id="home">
-        <div class="hero-particles" id="particles"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="hero-badge">
-                    <i class="fas fa-circle"></i> Edukasi & Kesadaran
+    <!-- Hero Section -->
+    <section class="hero" id="beranda">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">
+                    <i class="fas fa-shield-alt"></i> BERSAMA KITA BISA
                 </div>
-                <h1>Bersama <span>Hentikan</span> Kekerasan di Sekitar Kita</h1>
-                <p class="hero-desc">
-                    Kekerasan bukan sekadar masalah pribadi, melainkan tanggung jawab kita bersama. Kenali, pahami, dan bertindak untuk menciptakan lingkungan yang aman bagi semua.
+                <h1>
+                    <span class="stop">
+                        STOP
+                        <i class="fas fa-hand-paper"></i>
+                    </span>
+                    <span class="kekerasan">KEKERASAN<br>DALAM MASYARAKAT</span>
+                </h1>
+                <p class="hero-description">
+                    Ciptakan masyarakat yang aman, damai, dan saling menghargai. Kekerasan bukan solusi, peduli adalah aksi.
                 </p>
+                <div class="hero-tagline">
+                    Kenali, Cegah, dan Laporkan Kekerasan di Sekitar Kita
+                </div>
                 <div class="hero-buttons">
-                    <a href="#pengertian" class="btn btn-primary">
-                        <i class="fas fa-book-open"></i> Mulai Belajar
+                    <a href="#statistik" class="btn btn-red">
+                        <i class="fas fa-chart-bar"></i> Lihat Data
                     </a>
-                    <a href="#bantuan" class="btn btn-outline">
+                    <a href="#bantuan" class="btn btn-white">
                         <i class="fas fa-phone"></i> Butuh Bantuan?
                     </a>
                 </div>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-number" id="counter1">0</div>
-                        <div class="hero-stat-label">Kasus/Tahun</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number" id="counter2">0</div>
-                        <div class="hero-stat-label">Korban Jiwa</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number" id="counter3">0%</div>
-                        <div class="hero-stat-label">Tidak Terlapor</div>
-                    </div>
-                </div>
             </div>
-            <!-- Ganti bagian hero-visual dengan kode ini -->
             <div class="hero-visual">
-                <div class="hero-card-stack">
-                    <!-- Card 1 - Perlindungan Hukum -->
-                    <div class="hero-card">
-                        <div class="hero-card-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Perlindungan Hukum</h3>
-                        <p><strong style="color: #667eea;">Indonesia</strong> memiliki regulasi yang melindungi korban kekerasan</p>
-                    </div>
+                <div class="silhouette-group">
+                    <svg class="silhouette silhouette-left" viewBox="0 0 200 400">
+                        <ellipse cx="100" cy="50" rx="30" ry="35" fill="#333"/>
+                        <path d="M50,380 Q40,300 55,260 Q65,200 100,180 Q135,200 145,260 Q160,300 150,380 Z" fill="#333"/>
+                    </svg>
 
-                    <!-- Card 2 - Pemulihan Korban -->
-                    <div class="hero-card">
-                        <div class="hero-card-icon" style="background: rgba(155,89,182,0.2); color: #9b59b6;">
-                            <i class="fas fa-heart-pulse"></i>
-                        </div>
-                        <h3>Pemulihan Korban</h3>
-                        <p>Layanan rehabilitasi untuk pemulihan fisik & psikologis</p>
-                    </div>
+                    <svg class="silhouette silhouette-main" viewBox="0 0 250 500">
+                        <ellipse cx="125" cy="60" rx="40" ry="45" fill="#222"/>
+                        <path d="M60,480 Q45,380 65,330 Q80,250 125,220 Q170,250 185,330 Q205,380 190,480 Z" fill="#222"/>
+                        <path d="M85,80 Q125,115 165,80" stroke="#444" stroke-width="4" fill="none"/>
+                    </svg>
 
-                    <!-- Card 3 - Peran Masyarakat -->
-                    <div class="hero-card">
-                        <div class="hero-card-icon" style="background: rgba(52,152,219,0.2); color: #3498db;">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Peran Masyarakat</h3>
-                        <p>Setiap orang bisa berkontribusi mencegah kekerasan</p>
+                    <svg class="silhouette silhouette-right" viewBox="0 0 200 400">
+                        <ellipse cx="100" cy="50" rx="35" ry="40" fill="#333"/>
+                        <path d="M45,380 Q35,290 50,250 Q60,200 100,175 Q140,200 150,250 Q165,290 155,380 Z" fill="#333"/>
+                    </svg>
+
+                    <div class="hand-stop">
+                        <i class="fas fa-hand-paper"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         PENGERTIAN
-         ============================================ -->
-    <section id="pengertian">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image reveal">
-                    <div class="about-image-main">
-                        <div class="about-image-overlay">
-                            <i class="fas fa-hand-holding-heart"></i>
-                            <h3>Lawan Kekerasan</h3>
-                            <p>Mulai dari diri sendiri dan lingkungan terdekat</p>
-                        </div>
-                    </div>
-                    <div class="about-floating-card">
-                        <div class="icon-circle">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div>
-                            <h4>7/10</h4>
-                            <p>Kasus tidak terlaporkan</p>
-                        </div>
-                    </div>
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <p class="quote-text">
+            DIAM BUKAN SOLUSI, <span>PEDULI ADALAH AKSI</span>
+        </p>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section" id="statistik">
+        <div class="section-header reveal">
+            <h2>STATISTIK KEKERASAN</h2>
+            <p class="section-subtitle">Data Kekerasan di Indonesia 2022-2026</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-female"></i>
                 </div>
-                <div class="about-content reveal">
-                    <h2>Apa Itu <span>Kekerasan</span>?</h2>
-                    <p>
-                        Menurut <strong>World Health Organization (WHO)</strong>, kekerasan adalah penggunaan kekuatan fisik atau kekuasaan, ancaman atau tindakan nyata, terhadap diri sendiri, orang lain, atau terhadap kelompok/masyarakat, yang mengakibatkan
-                        atau berpotensi mengakibatkan cedera, kematian, kerusakan psikologis, gangguan perkembangan, atau perampasan hak.
-                    </p>
-                    <p>
-                        Di Indonesia, kekerasan menjadi masalah serius yang terus meningkat setiap tahunnya. Baik terjadi di lingkungan rumah tangga, sekolah, tempat kerja, maupun ruang publik.
-                    </p>
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <div class="about-feature-icon"><i class="fas fa-hand-fist"></i></div>
-                            <div>
-                                <h4>Kekerasan Fisik</h4>
-                                <p>Setiap perbuatan yang mengakibatkan rasa sakit, jatuh sakit, atau luka berat pada tubuh korban.</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon"><i class="fas fa-brain"></i></div>
-                            <div>
-                                <h4>Kekerasan Psikologis</h4>
-                                <p>Tindakan yang menimbulkan ketakutan, hilangnya rasa percaya diri, hilangnya kemampuan untuk bertindak, dan rasa tidak berdaya.</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon"><i class="fas fa-coins"></i></div>
-                            <div>
-                                <h4>Kekerasan Ekonomi</h4>
-                                <p>Perbuatan yang membatasi atau melarang korban untuk bekerja, mengontrol keuangan, atau merugikan secara materi.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat-number" data-target="32000">0</div>
+                <div class="stat-year">Tahun 2022</div>
+                <p>Perempuan mengalami kekerasan</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-child"></i>
                 </div>
+                <div class="stat-number" data-target="21241">0</div>
+                <div class="stat-year">Tahun 2022</div>
+                <p>Anak menjadi korban kekerasan</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-number" data-target="9588">0</div>
+                <div class="stat-year">Tahun 2022</div>
+                <p>Kekerasan seksual anak (naik 2x)</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number" data-target="28831">0</div>
+                <div class="stat-year">Tahun 2024</div>
+                <p>Kasus kekerasan terhadap anak</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="stat-number" data-target="11524">0</div>
+                <div class="stat-year">Tahun 2024</div>
+                <p>Kasus KDRT (rekor tertinggi)</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-ban"></i>
+                </div>
+                <div class="stat-number" data-target="3166">0</div>
+                <div class="stat-year">Tahun 2024</div>
+                <p>Kekerasan seksual terverifikasi</p>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         JENIS KEKERASAN
-         ============================================ -->
-    <section id="jenis">
-        <div class="container">
+    <!-- Types Section -->
+    <section class="types-section" id="jenis">
+        <div class="types-container">
             <div class="section-header reveal">
-                <div class="section-tag"><i class="fas fa-layer-group"></i> Klasifikasi</div>
-                <h2 class="section-title">Jenis-Jenis <span>Kekerasan</span></h2>
-                <p class="section-subtitle">Memahami berbagai bentuk kekerasan yang terjadi di sekitar kita untuk pencegahan yang lebih efektif</p>
+                <h2>BENTUK-BENTUK KEKERASAN</h2>
+                <p class="section-subtitle">Kenali Bentuknya, Agar Kita Lebih Waspada</p>
             </div>
-            <div class="jenis-grid">
-                <div class="jenis-card reveal">
-                    <div class="jenis-icon"><i class="fas fa-hand-fist"></i></div>
-                    <h3>Kekerasan Fisik</h3>
-                    <p>Memukul, menendang, mencekik, atau任何形式的 tindakan fisik yang melukai orang lain. Termasuk penganiayaan dan penyiksaan.</p>
+            <div class="types-grid">
+                <div class="type-item reveal">
+                    <div class="type-icon">
+                        <i class="fas fa-hand-rock"></i>
+                    </div>
+                    <div class="type-content">
+                        <h3>KEKERASAN FISIK</h3>
+                        <p>Memukul, menendang, mendorong, atau melukai tubuh seseorang</p>
+                    </div>
                 </div>
-                <div class="jenis-card reveal">
-                    <div class="jenis-icon"><i class="fas fa-comments"></i></div>
-                    <h3>Kekerasan Verbal</h3>
-                    <p>Menghina, mengancam, memaki, atau mengucapkan kata-kata yang merendahkan martabat dan menghancurkan kepercayaan diri korban.</p>
+
+                <div class="type-item reveal">
+                    <div class="type-icon">
+                        <i class="fas fa-comment-slash"></i>
+                    </div>
+                    <div class="type-content">
+                        <h3>KEKERASAN VERBAL</h3>
+                        <p>Menghina, mengejek, membentak, atau berkata kasar</p>
+                    </div>
                 </div>
-                <div class="jenis-card reveal">
-                    <div class="jenis-icon"><i class="fas fa-heart-crack"></i></div>
-                    <h3>Kekerasan Psikologis</h3>
-                    <p>Intimidasi, manipulasi emosional, isolasi sosial, gaslighting, dan bentuk tekanan mental lainnya yang merusak kesejahteraan psikologis.</p>
+
+                <div class="type-item reveal">
+                    <div class="type-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="type-content">
+                        <h3>KEKERASAN PSIKIS</h3>
+                        <p>Mengancam, mempermalukan, mengintimidasi, membuat korban takut</p>
+                    </div>
                 </div>
-                <div class="jenis-card reveal">
-                    <div class="jenis-icon"><i class="fas fa-venus-mars"></i></div>
-                    <h3>Kekerasan Seksual</h3>
-                    <p>Pemaksaan hubungan seksual, pelecehan seksual, pencabulan, dan bentuk eksploitasi seksual lainnya tanpa persetujuan korban.</p>
+
+                <div class="type-item reveal">
+                    <div class="type-icon">
+                        <i class="fas fa-hand-slash"></i>
+                    </div>
+                    <div class="type-content">
+                        <h3>KEKERASAN SEKSUAL</h3>
+                        <p>Pelecehan, sentuhan tidak pantas, pemaksaan, komentar seksual</p>
+                    </div>
                 </div>
-                <div class="jenis-card reveal">
-                    <div class="jenis-icon"><i class="fas fa-money-bill-trend-up"></i></div>
-                    <h3>Kekerasan Ekonomi</h3>
-                    <p>Mengontrol keuangan pasangan, melarang bekerja, mencuri harta, atau memaksa korban menanggung beban ekonomi secara tidak adil.</p>
+
+                <div class="type-item reveal">
+                    <div class="type-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="type-content">
+                        <h3>KEKERASAN EKONOMI</h3>
+                        <p>Mengontrol uang, memaksa bekerja, membatasi akses ekonomi</p>
+                    </div>
                 </div>
-                <div class="jenis-card reveal">
-                    <div class="jenis-icon"><i class="fas fa-laptop"></i></div>
-                    <h3>Cyberbullying</h3>
-                    <p>Perundungan melalui media digital termasuk penyebaran konten negatif, doxxing, ancaman online, dan pelecehan di dunia maya.</p>
+
+                <div class="type-item reveal">
+                    <div class="type-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="type-content">
+                        <h3>KEKERASAN DIGITAL</h3>
+                        <p>Perundungan online, penyebaran foto pribadi, ancaman media sosial</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         STATISTIK & DATA
-         ============================================ -->
-    <section id="statistik">
-        <div class="container">
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="section-header reveal">
+            <h2>DATA 2022-2026</h2>
+            <p class="section-subtitle" style="color: #ccc;">Perkembangan Kasus Kekerasan</p>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">2022</div>
+                    <h3>Peningkatan Kasus</h3>
+                    <p>25,050 kasus kekerasan perempuan. 9,588 kasus kekerasan seksual anak (naik 2x). Total 21,241 anak korban kekerasan.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">2023</div>
+                    <h3>Implementasi UU TPKS</h3>
+                    <p>4,280 kasus kekerasan seksual. 288,111 laporan kekerasan perempuan. 20,205 kasus kekerasan anak.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <h3>Rekor Tertinggi KDRT</h3>
+                    <p>11,524 kasus KDRT (tertinggi sejak 2018). 28,831 kasus kekerasan anak. 3,166 kasus kekerasan seksual.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">2025</div>
+                    <h3>Penguatan Sistem</h3>
+                    <p>Fokus implementasi UU TPKS, peningkatan layanan terpadu, digitalisasi pelaporan, kampanye nasional.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">2026</div>
+                    <h3>Target Penurunan 30%</h3>
+                    <p>Target penurunan kekerasan perempuan dan anak 30%. Penguatan sistem perlindungan nasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Victim Section -->
+    <section class="victim-section">
+        <div class="victim-container">
             <div class="section-header reveal">
-                <div class="section-tag"><i class="fas fa-chart-bar"></i> Data & Fakta</div>
-                <h2 class="section-title">Statistik Kekerasan <span>di Indonesia</span></h2>
-                <p class="section-subtitle">Data terbaru menunjukkan tren yang mengkhawatirkan dalam kasus kekerasan di Indonesia</p>
+                <h2>DAMPAK KEKERASAN</h2>
+                <p class="section-subtitle">Kekerasan Merusak Banyak Hal</p>
             </div>
+            <div class="victim-grid">
+                <div class="victim-card reveal">
+                    <div class="victim-icon">😢</div>
+                    <h3>BAGI KORBAN</h3>
+                    <p>Luka fisik dan cedera, trauma, depresi, rasa takut, menurunnya rasa percaya diri, gangguan belajar/bekerja, merasa tidak aman dan terisolasi</p>
+                </div>
 
-            <div class="stats-grid reveal">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-file-lines"></i></div>
-                    <div class="stat-number">45,451</div>
-                    <div class="stat-label">Kasus KDRT (2024)</div>
+                <div class="victim-card reveal">
+                    <div class="victim-icon">👨‍👩‍👧</div>
+                    <h3>BAGI KELUARGA</h3>
+                    <p>Hubungan tidak harmonis, muncul rasa cemas dan tidak aman, anak meniru perilaku kekerasan, suasana rumah tidak nyaman</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-child"></i></div>
-                    <div class="stat-number">8,239</div>
-                    <div class="stat-label">Kasus Anak (2024)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-venus"></i></div>
-                    <div class="stat-number">21,758</div>
-                    <div class="stat-label">Korban Perempuan</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-school"></i></div>
-                    <div class="stat-number">3,400+</div>
-                    <div class="stat-label">Kasus Bullying</div>
-                </div>
-            </div>
 
-            <div class="section-header reveal" style="margin-top: 40px;">
-                <h2 class="section-title" style="font-size: 2rem;">Kronologi <span>Kasus Penting</span> 2022–2026</h2>
-            </div>
-
-            <div class="timeline reveal">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2022</span>
-                        <h4>Tragedi Kanjuruhan</h4>
-                        <p>12 Oktober 2022 — 135 orang tewas dalam tragedi Stadion Kanjuruhan, Malang akibat desak-desakan dan penggunaan gas air mata oleh aparat. Menjadi bencana olahraga terbesar dalam sejarah Indonesia.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2022</span>
-                        <h4>Kasus Feri Aulia (Buli hingga Tewas)</h4>
-                        <p>November 2022 — Feri Aulia (15), siswa SMP di Tangerang, meninggal setelah mengalami perundungan (bullying) oleh rekan sekolahnya. Kasus ini memicu perhatian nasional tentang kekerasan di sekolah.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2023</span>
-                        <h4>UU TPKS Resmi Berjalan</h4>
-                        <p>Undang-Undang Tindak Pidana Kekerasan Seksual (UU No. 12/2022) mulai diimplementasikan. Regulasi ini memberikan perlindungan lebih kuat bagi korban kekerasan seksual dengan mekanisme pemulihan dan pendampingan.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2023</span>
-                        <h4>Kasus Bullying di SMPN 16 Jakarta</h4>
-                        <p>Seorang siswa kelas 8 mengalami perundungan fisik dan verbal oleh sekelompok siswa senior di sekolah. Video kejadian viral di media sosial dan memicu diskusi nasional tentang budaya bullying di sekolah.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2024</span>
-                        <h4>Kasus KDRT Viral: Ariel Tatum</h4>
-                        <p>Februari 2024 — Artis Ariel Tatum melaporkan dugaan kekerasan yang dialaminya kepada publik. Kasus ini membuka diskusi luas tentang KDRT dan mendorong lebih banyak korban untuk berani bersuara.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2024</span>
-                        <h4>Kasus Perundungan di MAN Insan Cendekia</h4>
-                        <p>2024 — Kasus perundungan terhadap siswa di MAN Insan Cendekia Gorontalo viral di media sosial. Korban mengalami kekerasan fisik dan psikologis dari seniornya. Kemenag melakukan investigasi menyeluruh.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2025</span>
-                        <h4>Peningkatan Kasus Cyberbullying</h4>
-                        <p>Kominfo mencatat lonjakan kasus cyberbullying sebesar 40% di tahun 2025, terutama di kalangan remaja. Platform media sosial menjadi sarana utama perundungan digital, mendorong pembuatan regulasi baru.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2025–2026</span>
-                        <h4>Kasus Kekerasan di Kampus</h4>
-                        <p>Beberapa kasus kekerasan seksual dan perundungan di perguruan tinggi terungkap, termasuk di universitas negeri ternama. Mendorong penguatan Unit Pencegahan dan Penanganan Kekerasan (UPPKA) di kampus-kampus.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
+                <div class="victim-card reveal">
+                    <div class="victim-icon">🏘️</div>
+                    <h3>BAGI MASYARAKAT</h3>
+                    <p>Lingkungan tidak nyaman, meningkatnya konflik sosial, menurunnya rasa kepedulian, menghambat pembangunan masyarakat sehat</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         KASUS TERKINI
-         ============================================ -->
-    <section id="kasus">
-        <div class="container">
+    <!-- Help Section -->
+    <section class="help-section" id="bantuan">
+        <div class="help-container">
             <div class="section-header reveal">
-                <div class="section-tag"><i class="fas fa-newspaper"></i> Berita Terkini</div>
-                <h2 class="section-title">Kasus Kekerasan <span>Terbaru</span></h2>
-                <p class="section-subtitle">Ringkasan kasus-kasus kekerasan yang terjadi di Indonesia dalam beberapa tahun terakhir</p>
+                <h2>CEGAH, PEDULI, DAN LAPORKAN!</h2>
+                <p class="section-subtitle">Jika Melihat atau Mengalami Kekerasan</p>
             </div>
-            <div class="kasus-grid">
-                <div class="kasus-card reveal">
-                    <div class="kasus-card-header">
-                        <div class="kasus-date">
-                            <div class="day">2024</div>
-                            <div class="month">Tahun</div>
-                        </div>
-                        <span class="kasus-category kategori-kdrt"><i class="fas fa-house"></i> KDRT</span>
+            <div class="help-grid">
+                <div class="help-card reveal">
+                    <div class="help-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div class="kasus-card-body">
-                        <h3>Komnas Perempuan Catat 45.451 Kasus KDRT pada 2024</h3>
-                        <p>Komnas Perempuan mencatat peningkatan signifikan kasus Kekerasan Dalam Rumah Tangga sepanjang 2024. Sebanyak 45.451 kasus dilaporkan, dengan dominasi kekerasan fisik dan psikologis oleh pasangan intim. Angka ini menunjukkan kenaikan
-                            12% dibanding tahun sebelumnya.</p>
-                    </div>
-                    <div class="kasus-card-footer">
-                        <span class="kasus-source"><i class="fas fa-link"></i> komnasperempuan.go.id</span>
-                        <div class="kasus-tag">
-                            <span>KDRT</span>
-                            <span>Perempuan</span>
-                        </div>
-                    </div>
+                    <h3>POLISI</h3>
+                    <p>Laporkan ke pihak berwenang</p>
+                    <div class="help-number">110</div>
                 </div>
 
-                <div class="kasus-card reveal">
-                    <div class="kasus-card-header">
-                        <div class="kasus-date">
-                            <div class="day">2024</div>
-                            <div class="month">Tahun</div>
-                        </div>
-                        <span class="kasus-category kategori-bullying"><i class="fas fa-school"></i> Bullying</span>
+                <div class="help-card reveal">
+                    <div class="help-icon">
+                        <i class="fas fa-female"></i>
                     </div>
-                    <div class="kasus-card-body">
-                        <h3>Kasus Bullying di Sekolah Meningkat 30% — Kemenag & Kemendikbud Respon</h3>
-                        <p>Perundungan di lingkungan sekolah terus menjadi masalah serius. Data KPAI menunjukkan lebih dari 3.400 kasus perundungan terjadi di sekolah-sekolah Indonesia pada 2024. Pemerintah merespons dengan memperkuat program sekolah ramah
-                            anak.
-                        </p>
-                    </div>
-                    <div class="kasus-card-footer">
-                        <span class="kasus-source"><i class="fas fa-link"></i> kpai.go.id</span>
-                        <div class="kasus-tag">
-                            <span>Bullying</span>
-                            <span>Anak</span>
-                        </div>
-                    </div>
+                    <h3>SAPAI 129</h3>
+                    <p>Layanan pengaduan perempuan & anak</p>
+                    <div class="help-number">129</div>
                 </div>
 
-                <div class="kasus-card reveal">
-                    <div class="kasus-card-header">
-                        <div class="kasus-date">
-                            <div class="day">2025</div>
-                            <div class="month">Tahun</div>
-                        </div>
-                        <span class="kasus-category kategori-siber"><i class="fas fa-wifi"></i> Cyber</span>
+                <div class="help-card reveal">
+                    <div class="help-icon">
+                        <i class="fas fa-heart"></i>
                     </div>
-                    <div class="kasus-card-body">
-                        <h3>Cyberbullying Meningkat 40% — Remaja Jadi Kelompok Paling Rentan</h3>
-                        <p>Kominfo mencatat lonjakan kasus cyberbullying sebesar 40% di tahun 2025. Media sosial menjadi platform utama perundungan digital. Kasus termasuk doxxing, penyebaran konten memalukan, dan ancaman online terhadap remaja.</p>
-                    </div>
-                    <div class="kasus-card-footer">
-                        <span class="kasus-source"><i class="fas fa-link"></i> kominfo.go.id</span>
-                        <div class="kasus-tag">
-                            <span>Cyber</span>
-                            <span>Remaja</span>
-                        </div>
-                    </div>
+                    <h3>KOMNAS PEREMPUAN</h3>
+                    <p>Konsultasi dan pendampingan</p>
+                    <div class="help-number">0811-129-129</div>
                 </div>
 
-                <div class="kasus-card reveal">
-                    <div class="kasus-card-header">
-                        <div class="kasus-date">
-                            <div class="day">2025</div>
-                            <div class="month">Tahun</div>
+                <div class="help-card reveal">
+                    <div class="help-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>LAPOR ONLINE</h3>
+                    <p>Situs pengaduan online</p>
+                    <div class="help-number">lapor.go.id</div>
+                </div>
+            </div>
+
+            <!-- Steps Section -->
+            <div class="steps-section reveal">
+                <div class="steps-container">
+                    <h3 class="steps-title">Cara Mencegah Kekerasan</h3>
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <h4>Hargai Perbedaan</h4>
+                            <p>Hargai perbedaan dan semua orang</p>
                         </div>
-                        <span class="kasus-category kategori-seksual"><i class="fas fa-shield-halved"></i> TPKS</span>
-                    </div>
-                    <div class="kasus-card-body">
-                        <h3>Implementasi UU TPKS: 2.100+ Kasus Ditangani di Tahun Kedua</h3>
-                        <p>Pada tahun kedua implementasi UU Tindak Pidana Kekerasan Seksual, lebih dari 2.100 kasus berhasil ditangani. UU ini memberikan payung hukum yang lebih kuat bagi korban dan mendorong pendirian rumah aman di berbagai daerah.</p>
-                    </div>
-                    <div class="kasus-card-footer">
-                        <span class="kasus-source"><i class="fas fa-link"></i> kemenpppa.go.id</span>
-                        <div class="kasus-tag">
-                            <span>TPKS</span>
-                            <span>Regulasi</span>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <h4>Komunikasi</h4>
+                            <p>Selesaikan masalah dengan komunikasi</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <h4>Tolak Kekerasan</h4>
+                            <p>Tidak membalas kekerasan dengan kekerasan</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <h4>Berani Melapor</h4>
+                            <p>Berani menegur dan melaporkan</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">5</div>
+                            <h4>Bangun Lingkungan</h4>
+                            <p>Bangun lingkungan yang peduli</p>
                         </div>
                     </div>
                 </div>
@@ -2180,387 +1260,76 @@
         </div>
     </section>
 
-    <!-- ============================================
-         UNDANG-UNDANG
-         ============================================ -->
-    <section id="hukum">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag"><i class="fas fa-gavel"></i> Regulasi</div>
-                <h2 class="section-title">Payung <span>Hukum</span> Anti Kekerasan</h2>
-                <p class="section-subtitle">Indonesia memiliki berbagai regulasi yang melindungi masyarakat dari tindak kekerasan</p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-hand-paper"></i> STOP KEKERASAN
             </div>
-            <div class="hukum-grid">
-                <div class="hukum-card reveal">
-                    <div class="hukum-card-icon"><i class="fas fa-scale-balanced"></i></div>
-                    <h3>UU No. 23/2004 — PKDRT</h3>
-                    <p>Undang-Undang tentang Penghapusan Kekerasan Dalam Rumah Tangga. Mengatur tentang larangan KDRT, perlindungan korban, dan sanksi pidana bagi pelaku kekerasan dalam lingkup rumah tangga.</p>
-                </div>
-                <div class="hukum-card reveal">
-                    <div class="hukum-card-icon"><i class="fas fa-child"></i></div>
-                    <h3>UU No. 35/2014 — Perlindungan Anak</h3>
-                    <p>Perubahan atas UU Perlindungan Anak yang memperkuat sanksi bagi pelaku kekerasan terhadap anak, termasuk hukuman pidana penjara dan denda yang lebih berat.</p>
-                </div>
-                <div class="hukum-card reveal">
-                    <div class="hukum-card-icon"><i class="fas fa-venus-mars"></i></div>
-                    <h3>UU No. 12/2022 — TPKS</h3>
-                    <p>Undang-Undang Tindak Pidana Kekerasan Seksual yang mengatur 9 jenis kekerasan seksual, mekanisme penanganan korban, serta kewajiban negara dalam pencegahan dan pemulihan.</p>
-                </div>
-                <div class="hukum-card reveal">
-                    <div class="hukum-card-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>UU No. 19/2016 — ITE</h3>
-                    <p>Perubahan atas UU Informasi dan Transaksi Elektronik yang mengatur tentang cyberbullying, pencemaran nama baik digital, dan penyebaran konten kekerasan di internet.</p>
-                </div>
-                <div class="hukum-card reveal">
-                    <div class="hukum-card-icon"><i class="fas fa-book-open"></i></div>
-                    <h3>KUHP Pasal 351–355</h3>
-                    <p>KUHP mengatur tentang penganiayaan dengan berbagai tingkatan ancaman pidana, mulai dari penganiayaan ringan hingga penganiayaan berat yang mengakibatkan kematian.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         DAMPAK
-         ============================================ -->
-    <section id="dampak">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag"><i class="fas fa-triangle-exclamation"></i> Konsekuensi</div>
-                <h2 class="section-title">Dampak <span>Kekerasan</span></h2>
-                <p class="section-subtitle">Kekerasan meninggalkan luka yang dalam dan berdampak luas pada kehidupan korban</p>
-            </div>
-            <div class="dampak-wrapper">
-                <div class="dampak-category reveal">
-                    <div class="dampak-category-header">
-                        <div class="dampak-category-icon"><i class="fas fa-heart-pulse"></i></div>
-                        <h3>Dampak Fisik</h3>
-                    </div>
-                    <ul class="dampak-list">
-                        <li><i class="fas fa-circle"></i> Cedera fisik mulai dari memar, patah tulang, hingga luka berat</li>
-                        <li><i class="fas fa-circle"></i> Gangguan kesehatan kronis dan cacat permanen</li>
-                        <li><i class="fas fa-circle"></i> Gangguan tidur, kehilangan nafsu makan, dan kelelahan kronis</li>
-                        <li><i class="fas fa-circle"></i> Risiko kematian pada kasus kekerasan berat</li>
-                        <li><i class="fas fa-circle"></i> Gangguan pada sistem reproduksi dan kehamilan</li>
-                    </ul>
-                </div>
-                <div class="dampak-category reveal">
-                    <div class="dampak-category-header">
-                        <div class="dampak-category-icon"><i class="fas fa-brain"></i></div>
-                        <h3>Dampak Psikologis</h3>
-                    </div>
-                    <ul class="dampak-list">
-                        <li><i class="fas fa-circle"></i> Depresi, kecemasan berlebihan, dan gangguan PTSD</li>
-                        <li><i class="fas fa-circle"></i> Menurunnya kepercayaan diri dan rasa tidak berharga</li>
-                        <li><i class="fas fa-circle"></i> Gangguan konsentrasi dan penurunan produktivitas</li>
-                        <li><i class="fas fa-circle"></i> Trauma berkepanjangan dan ketakutan berlebihan</li>
-                        <li><i class="fas fa-circle"></i> Risiko perilaku menyakiti diri sendiri (self-harm)</li>
-                    </ul>
-                </div>
-                <div class="dampak-category reveal">
-                    <div class="dampak-category-header">
-                        <div class="dampak-category-icon"><i class="fas fa-users-between-lines"></i></div>
-                        <h3>Dampak Sosial</h3>
-                    </div>
-                    <ul class="dampak-list">
-                        <li><i class="fas fa-circle"></i> Isolasi sosial dan kesulitan membangun hubungan</li>
-                        <li><i class="fas fa-circle"></i> Penurunan prestasi akademik dan produktivitas kerja</li>
-                        <li><i class="fas fa-circle"></i> Stigma masyarakat yang mempersulit pemulihan korban</li>
-                        <li><i class="fas fa-circle"></i> Siklus kekerasan yang diturunkan ke generasi berikutnya</li>
-                        <li><i class="fas fa-circle"></i> Kerusakan tatanan sosial dan keamanan masyarakat</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         PENCEGAHAN
-         ============================================ -->
-    <section id="pencegahan">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag"><i class="fas fa-shield-halved"></i> Solusi</div>
-                <h2 class="section-title">Langkah <span>Pencegahan</span></h2>
-                <p class="section-subtitle">Setiap orang memiliki peran penting dalam mencegah kekerasan di lingkungan sekitar</p>
-            </div>
-            <div class="pencegahan-grid">
-                <div class="pencegahan-card reveal">
-                    <div class="pencegahan-number">1</div>
-                    <div>
-                        <h3>Edukasi Sejak Dini</h3>
-                        <p>Terapkan pendidikan karakter dan anti-kekerasan di sekolah dan keluarga. Ajarkan anak tentang consent, batasan pribadi, dan cara menolak kekerasan.</p>
-                    </div>
-                </div>
-                <div class="pencegahan-card reveal">
-                    <div class="pencegahan-number">2</div>
-                    <div>
-                        <h3>Berani Bicara & Melapor</h3>
-                        <p>Jangan diam jika melihat atau mengalami kekerasan. Laporkan ke pihak berwenang, hotline bantuan, atau lembaga perlindungan terkait.</p>
-                    </div>
-                </div>
-                <div class="pencegahan-card reveal">
-                    <div class="pencegahan-number">3</div>
-                    <div>
-                        <h3>Dukung Korban</h3>
-                        <p>Berikan dukungan emosional, dampingi korban untuk melapor, dan hindari victim-blaming. Korban membutuhkan dukungan, bukan penghakiman.</p>
-                    </div>
-                </div>
-                <div class="pencegahan-card reveal">
-                    <div class="pencegahan-number">4</div>
-                    <div>
-                        <h3>Perkuat Regulasi</h3>
-                        <p>Dukung implementasi UU TPKS dan regulasi anti-kekerasan lainnya. Pastikan penegakan hukum berjalan tegas dan adil bagi semua korban.</p>
-                    </div>
-                </div>
-                <div class="pencegahan-card reveal">
-                    <div class="pencegahan-number">5</div>
-                    <div>
-                        <h3>Bangun Lingkungan Aman</h3>
-                        <p>Ciptakan ruang yang aman di sekolah, tempat kerja, dan komunitas. Terapkan mekanisme pelaporan yang mudah diakses dan terlindungi.</p>
-                    </div>
-                </div>
-                <div class="pencegahan-card reveal">
-                    <div class="pencegahan-number">6</div>
-                    <div>
-                        <h3>Manfaatkan Teknologi</h3>
-                        <p>Gunakan aplikasi dan platform digital untuk melaporkan kekerasan, mengakses layanan bantuan, dan menyebarkan informasi pencegahan.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         QUOTE
-         ============================================ -->
-    <div class="quote-section">
-        <div class="container">
-            <blockquote>
-                "Kekerasan adalah kegagalan imajinasi. Ketika kita gagal membayangkan cara lain untuk menyelesaikan konflik, kita memilih kekerasan."
-            </blockquote>
-            <cite>— Ursula K. Le Guin</cite>
-        </div>
-    </div>
-
-    <!-- ============================================
-         BANTUAN / KONTAK DARURAT
-         ============================================ -->
-    <section id="bantuan">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag"><i class="fas fa-phone-volume"></i> Darurat</div>
-                <h2 class="section-title">Nomor <span>Bantuan</span> Darurat</h2>
-                <p class="section-subtitle">Jika Anda atau seseorang yang Anda kenal mengalami kekerasan, jangan ragu untuk menghubungi:</p>
-            </div>
-            <div class="bantuan-grid">
-                <div class="bantuan-card reveal">
-                    <div class="bantuan-icon"><i class="fas fa-phone"></i></div>
-                    <h3>SAPA 129</h3>
-                    <div class="bantuan-phone">129</div>
-                    <p>Layanan SAPA 129 Kementerian PPPA untuk pelaporan kekerasan terhadap perempuan dan anak. Tersedia 24/7.</p>
-                </div>
-                <div class="bantuan-card reveal">
-                    <div class="bantuan-icon"><i class="fas fa-shield-halved"></i></div>
-                    <h3>Komnas Perempuan</h3>
-                    <div class="bantuan-phone">0811-1129-129</div>
-                    <p>Komisi Nasional Anti Kekerasan terhadap Perempuan. Menerima pengaduan dan memberikan pendampingan hukum.</p>
-                </div>
-                <div class="bantuan-card reveal">
-                    <div class="bantuan-icon"><i class="fas fa-child-reaching"></i></div>
-                    <h3>KPAI</h3>
-                    <div class="bantuan-phone">0813-2255-0100</div>
-                    <p>Komisi Perlindungan Anak Indonesia. Menerima laporan kekerasan terhadap anak melalui hotline dan media sosial.</p>
-                </div>
-                <div class="bantuan-card reveal">
-                    <div class="bantuan-icon"><i class="fas fa-headset"></i></div>
-                    <h3>LPSK</h3>
-                    <div class="bantuan-phone">021-3925-222</div>
-                    <p>Lembaga Perlindungan Saksi dan Korban. Memberikan perlindungan dan bantuan hukum bagi korban dan saksi.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3><i class="fas fa-hand-fist"></i> STOP KEKERASAN</h3>
-                    <p>Website edukasi tentang kekerasan di Indonesia. Dibuat untuk meningkatkan kesadaran masyarakat dan membantu korban mendapatkan perlindungan yang layak.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Navigasi</h4>
-                    <ul>
-                        <li><a href="#pengertian">Pengertian</a></li>
-                        <li><a href="#jenis">Jenis Kekerasan</a></li>
-                        <li><a href="#statistik">Statistik</a></li>
-                        <li><a href="#kasus">Kasus Terkini</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Informasi</h4>
-                    <ul>
-                        <li><a href="#hukum">Dasar Hukum</a></li>
-                        <li><a href="#dampak">Dampak Kekerasan</a></li>
-                        <li><a href="#pencegahan">Pencegahan</a></li>
-                        <li><a href="#bantuan">Nomor Bantuan</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Sumber Data</h4>
-                    <ul>
-                        <li><a href="https://komnasperempuan.go.id" target="_blank">Komnas Perempuan</a></li>
-                        <li><a href="https://www.kpai.go.id" target="_blank">KPAI</a></li>
-                        <li><a href="https://kemenpppa.go.id" target="_blank">Kemen PPPA</a></li>
-                        <li><a href="https://www.who.int" target="_blank">WHO</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 <a href="#">STOP KEKERASAN</a>. Website Edukasi.</p>
-                <p>Dibuat untuk tujuan pendidikan.</p>
+            <p class="footer-tagline">HENTIKAN KEKERASAN, WUJUDKAN MASYARAKAT YANG BERKEMANUSIAAN</p>
+            <p style="margin-bottom: 1rem;">JANGAN DIAM. SUARA ANDA DAPAT MENYELAMATKAN SESAMA!</p>
+            <div class="footer-info">
+                <p>Sumber Data: Komnas Perempuan, Kementerian PPPA, BPS, KPAI (2022-2024)</p>
+                <p>© 2026 - Website Edukasi Stop Kekerasan Dalam Masyarakat</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- ============================================
-         JAVASCRIPT
-         ============================================ -->
     <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile nav toggle
-        function toggleNav() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        // Close mobile nav on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
-
-        // Active nav link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Scroll reveal animation
+        // Scroll Reveal
         const revealElements = document.querySelectorAll('.reveal');
+
         const revealOnScroll = () => {
-            revealElements.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('active');
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
                 }
             });
         };
+
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
 
-        // Counter animation
-        function animateCounter(elementId, target, suffix = '') {
-            const element = document.getElementById(elementId);
-            let current = 0;
-            const increment = target / 80;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current).toLocaleString() + suffix;
-            }, 20);
-        }
+        // Counter Animation
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
 
-        // Trigger counters when hero is visible
-        let countersAnimated = false;
-        const observerCounter = new IntersectionObserver((entries) => {
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 20);
+                } else {
+                    counter.innerText = target.toLocaleString('id-ID');
+                }
+            });
+        };
+
+        const statsSection = document.querySelector('.stats-section');
+        let counted = false;
+
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !countersAnimated) {
-                    countersAnimated = true;
-                    animateCounter('counter1', 78448);
-                    animateCounter('counter2', 1247);
-                    animateCounter('counter3', 70, '%');
+                if (entry.isIntersecting && !counted) {
+                    animateCounters();
+                    counted = true;
                 }
             });
         }, {
             threshold: 0.5
         });
 
-        const heroSection = document.querySelector('.hero');
-        if (heroSection) observerCounter.observe(heroSection);
+        observer.observe(statsSection);
 
-        // Create particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = (Math.random() * 4 + 2) + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particle.style.animationDelay = (Math.random() * 10) + 's';
-            particle.style.opacity = Math.random() * 0.5 + 0.1;
-            particlesContainer.appendChild(particle);
-        }
-
-        // Smooth scroll for anchor links
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
