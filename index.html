@@ -97,7 +97,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
+}
         
         .nav-logo {
             font-family: 'Playfair Display', serif;
@@ -118,15 +118,16 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 8px;
+            gap: 6px;
+            margin-left: auto; /* INI YANG PENTING */
         }
         
         .nav-links a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            padding: 8px 18px;
+            padding: 8px 14px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: var(--transition);
         }
@@ -363,13 +364,15 @@
         }
         
         .hero-card-stack {
-            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            flex-direction: column;
+            gap: 20px;
             width: 400px;
-            height: 450px;
         }
         
         .hero-card {
-            position: absolute;
+            position: relative;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -388,16 +391,15 @@
         
         .hero-card:nth-child(2) {
             width: 280px;
-            top: 60px;
             right: 0;
             z-index: 2;
             animation: cardFloat2 7s ease-in-out infinite;
         }
         
         .hero-card:nth-child(3) {
-            width: 260px;
-            bottom: 0;
-            left: 30px;
+            grid-column: span 2;
+            justify-self: center;
+            width: 70%;
             z-index: 1;
             animation: cardFloat3 8s ease-in-out infinite;
         }
@@ -1779,6 +1781,7 @@
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#pengertian" class="active">Pengertian</a></li>
+                <li><a href="#penyebab">Penyebab</a></li>
                 <li><a href="#jenis">Jenis</a></li>
                 <li><a href="#statistik">Statistik</a></li>
                 <li><a href="#kasus">Kasus Terkini</a></li>
@@ -1926,7 +1929,70 @@
             </div>
         </div>
     </section>
+        <!-- ============================================
+     PENYEBAB KEKERASAN
+     ============================================ -->
+<section id="penyebab">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag"><i class="fas fa-triangle-exclamation"></i> Faktor Risiko</div>
+            <h2 class="section-title">Penyebab Terjadinya <span>Kekerasan</span></h2>
+            <p class="section-subtitle">
+                Kekerasan tidak terjadi begitu saja. Ada berbagai faktor yang melatarbelakangi tindakan tersebut, baik dari individu maupun lingkungan.
+            </p>
+        </div>
 
+        <div class="jenis-grid">
+            <div class="jenis-card reveal">
+                <div class="jenis-icon"><i class="fas fa-brain"></i></div>
+                <h3>Faktor Psikologis</h3>
+                <p>
+                    Emosi tidak stabil, stres berlebihan, trauma masa lalu, serta gangguan mental dapat memicu seseorang melakukan tindakan kekerasan.
+                </p>
+            </div>
+
+            <div class="jenis-card reveal">
+                <div class="jenis-icon"><i class="fas fa-house"></i></div>
+                <h3>Lingkungan Keluarga</h3>
+                <p>
+                    Pola asuh yang keras, kurangnya kasih sayang, serta konflik dalam keluarga dapat membentuk perilaku agresif sejak dini.
+                </p>
+            </div>
+
+            <div class="jenis-card reveal">
+                <div class="jenis-icon"><i class="fas fa-users"></i></div>
+                <h3>Pengaruh Lingkungan Sosial</h3>
+                <p>
+                    Pergaulan yang negatif, budaya kekerasan, serta tekanan dari teman sebaya dapat mendorong seseorang melakukan kekerasan.
+                </p>
+            </div>
+
+            <div class="jenis-card reveal">
+                <div class="jenis-icon"><i class="fas fa-money-bill"></i></div>
+                <h3>Masalah Ekonomi</h3>
+                <p>
+                    Kesulitan ekonomi, pengangguran, dan tekanan finansial sering menjadi pemicu konflik yang berujung pada kekerasan.
+                </p>
+            </div>
+
+            <div class="jenis-card reveal">
+                <div class="jenis-icon"><i class="fas fa-wifi"></i></div>
+                <h3>Pengaruh Media & Teknologi</h3>
+                <p>
+                    Konten kekerasan di media sosial, game, atau film dapat mempengaruhi perilaku, terutama pada anak dan remaja.
+                </p>
+            </div>
+
+            <div class="jenis-card reveal">
+                <div class="jenis-icon"><i class="fas fa-scale-balanced"></i></div>
+                <h3>Lemahnya Penegakan Hukum</h3>
+                <p>
+                    Kurangnya efek jera dan penegakan hukum yang tidak tegas dapat membuat pelaku tidak takut untuk mengulangi tindakan kekerasan.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- ============================================
          JENIS KEKERASAN
          ============================================ -->
